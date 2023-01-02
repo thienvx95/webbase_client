@@ -1,0 +1,43 @@
+{
+  "title": "welcome",
+  "app": {
+    "copyright": {
+      "produced": "Produced by BenjaminVu"
+    }
+  },
+  "pages": {
+    "login": {
+      "title": "Web Application",
+      "success": "Login successful!",
+      "username": {
+        "placeholder": "Username",
+        "required": "Username is required!"
+      },
+      "password": {
+        "placeholder": "Password",
+        "required": "Password is required!"
+      },
+      "rememberMe": "Remember Me",
+      "loginWith": "Login with",
+      "forgotPassword": "Forgot Password",
+      "error": "Username or Password invalid!"
+    },
+    "layouts": {
+      "userLayout": {
+        "title": "Web Application"
+      }
+    }
+  },
+  "menus": {
+    "login": "Login"
+  },
+  "theme": {
+    "dark": "Dark",
+    "system": "System theme",
+    "light": "Light"
+  },
+  "languages": {
+    "English": "English",
+    "Vietnamese": "Vietnamese"
+  }
+}
