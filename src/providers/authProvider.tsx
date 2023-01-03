@@ -7,7 +7,7 @@ import {
   WebApiToken,
   WebApiRefreshhToken,
 } from 'utils/constants';
-import { useBrowserStorage } from 'hooks/useBrowserStorage';
+import { useBrowserStorage } from 'utils/hooks/useBrowserStorage';
 
 type AuthContextValue = {
   token: string;

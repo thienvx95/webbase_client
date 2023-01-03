@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'utils/hooks/useAuth';
 import { Navigate, useOutlet } from 'react-router-dom';
 import { DashboardPath } from 'utils/constants';
 

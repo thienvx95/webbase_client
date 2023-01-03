@@ -1,4 +1,4 @@
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'utils/hooks/useAuth';
 import React from 'react';
 import { Navigate, useOutlet } from 'react-router-dom';
 import { LoginPath } from 'utils/constants';

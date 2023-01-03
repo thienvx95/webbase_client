@@ -15,6 +15,7 @@ import FontFaceObserver from 'fontfaceobserver';
 
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
+import 'antd/dist/reset.css';
 
 // Import root app
 import { App } from 'app';

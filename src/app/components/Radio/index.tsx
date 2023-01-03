@@ -72,7 +72,7 @@ const Wrapper = styled.div`
       }
       &:hover {
         &::before {
-          border-color: ${p => p.theme.primary};
+          border-color: ${p => p.theme.primaryColor};
         }
       }
     }
@@ -92,7 +92,7 @@ const Wrapper = styled.div`
         &::before {
           box-shadow: 0 0 0 3px
             ${p =>
-              p.theme.primary.replace(
+              p.theme.primaryColor.replace(
                 /rgba?(\(\s*\d+\s*,\s*\d+\s*,\s*\d+)(?:\s*,.+?)?\)/,
                 'rgba$1,0.2)',
               )};
@@ -102,8 +102,8 @@ const Wrapper = styled.div`
     &:checked {
       + label {
         &::before {
-          background-color: ${p => p.theme.primary};
-          border-color: ${p => p.theme.primary};
+          background-color: ${p => p.theme.primaryColor};
+          border-color: ${p => p.theme.primaryColor};
         }
         &::after {
           display: inline-block;
