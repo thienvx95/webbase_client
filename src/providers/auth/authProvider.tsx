@@ -8,6 +8,7 @@ import {
   WebApiRefreshhToken,
 } from 'utils/constants';
 import { useBrowserStorage } from 'utils/hooks/useBrowserStorage';
+import { useAuthenticateFormSlice } from './slice';
 
 type AuthContextValue = {
   token: string;
@@ -22,6 +23,7 @@ export const AuthContext = createContext<AuthContextValue>({
 });
 
 export const AuthProvider = ({ children }) => {
+  const { actions } = useAuthenticateFormSlice();
   const [token, setToken] = useBrowserStorage(WebApiToken, '');
   const [refreshToken, setRefreshToken] = useBrowserStorage(
     WebApiRefreshhToken,

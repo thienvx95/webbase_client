@@ -19,6 +19,7 @@
       },
       "rememberMe": "Remember Me",
       "loginWith": "Login with",
+      "login": "Login",
       "forgotPassword": "Forgot Password",
       "error": "Username or Password invalid!"
     },

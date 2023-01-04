@@ -14,7 +14,7 @@ import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from 'app/pages/HomePage/Loadable';
 import { useTranslation } from 'react-i18next';
-import { AuthProvider } from 'providers/authProvider';
+import { AuthProvider } from 'providers/auth/authProvider';
 import { HomeLayout } from 'app/layouts/homeLayout';
 import { LoginPage } from 'app/pages/LoginPage';
 import { ProtectedLayout } from 'app/layouts/protectedLayout';

@@ -12,37 +12,20 @@ import { commonMessages } from 'app/messages';
 import { Helmet } from 'react-helmet-async';
 import { messages } from './messages';
 import { useSelector } from 'react-redux';
-import { selectAuthenticate } from 'app/pages/LoginPage/slice/selectors';
-import { useAuthenticateFormSlice } from './slice';
+import { selectAuthenticate } from 'providers/auth/slice/selectors';
+import { useAuthenticateFormSlice } from 'providers/auth/slice';
 import {
   LoginMessage,
   LoginContainer,
   LoginFormContainer,
   LoginTopHeaderWrapper,
+  LoginSupporterContainer,
 } from './components';
 import { LanguageSwitch } from 'app/components/LanguageSwitch';
 import { ThemeSwitch } from 'app/components/ThemeSwitch';
-// const Lang = () => {
-//   const langClassName = useEmotionCss(({ token }) => {
-//     return {
-//       width: 42,
-//       height: 42,
-//       lineHeight: '42px',
-//       position: 'fixed',
-//       right: 16,
-//       borderRadius: token.borderRadius,
-//       ':hover': {
-//         backgroundColor: token.colorBgTextHover,
-//       },
-//     };
-//   });
-
-//   return (
-//     <div className={langClassName} data-lang>
-//       {SelectLang && <SelectLang />}
-//     </div>
-//   );
-// };
+import { ForgotPassword } from './components/forgotPassword';
+import { render } from 'react-dom';
+import { Button } from 'antd';
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
@@ -98,9 +81,10 @@ export const LoginPage: React.FC = () => {
       </LoginTopHeaderWrapper>
       <LoginFormContainer>
         <LoginForm
-          contentStyle={{
-            minWidth: 280,
-            maxWidth: '75vw',
+          submitter={{
+            searchConfig: {
+              submitText: t(messages.login()),
+            },
           }}
           logo={<img alt="logo" src="/logo.png" />}
           title={t(messages.loginTitle())}
@@ -147,25 +131,12 @@ export const LoginPage: React.FC = () => {
               },
             ]}
           />
-          <div
-            style={{
-              marginBottom: 24,
-            }}
-          >
+          <LoginSupporterContainer>
             <ProFormCheckbox noStyle name="autoLogin">
               {t(messages.rememberMe())}
             </ProFormCheckbox>
-            <a
-              href="/"
-              role="button"
-              style={{
-                float: 'right',
-              }}
-              onClick={() => {}}
-            >
-              {t(messages.forgotPassword())}
-            </a>
-          </div>
+            <ForgotPassword href="#" onClick={() => {}} />
+          </LoginSupporterContainer>
         </LoginForm>
       </LoginFormContainer>
       <Footer />

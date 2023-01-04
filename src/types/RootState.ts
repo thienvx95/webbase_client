@@ -1,5 +1,5 @@
-import { AuthenticateState } from 'app/pages/LoginPage/slice/types';
-import { ThemeState } from 'styles/theme/slice/types';
+import { AuthenticateState } from 'providers/auth/slice/types';
+import { ThemeState } from 'providers/theme/slice/types';
 
 /* 
   Because the redux-injectors injects your reducers asynchronously somewhere in your code

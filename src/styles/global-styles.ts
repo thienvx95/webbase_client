@@ -18,12 +18,10 @@ export const GlobalStyle = createGlobalStyle`
   body.fontLoaded {
     font-family: 'Inter', -apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
   }
-  p,
-  label {
-    line-height: 1.5em;
+  input {
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
   }
-  input, select, button {
-    font-family: inherit;
-    font-size: inherit;
-  }
+}
+
 `;

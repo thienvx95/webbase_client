@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { media } from 'styles/media';
 
 export const LoginFormContainer = styled.div`
   flex: 1;
@@ -13,5 +14,8 @@ export const LoginFormContainer = styled.div`
     &:hover {
       color: ${p => p.theme.text};
     }
+  }
+  ${media.md} {
+    padding: 32px 0 24px;
   }
 `;

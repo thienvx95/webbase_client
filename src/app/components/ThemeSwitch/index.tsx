@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { themeActions } from 'styles/theme/slice';
+import { themeActions } from 'providers/theme/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveTheme } from 'styles/theme/utils';
-import { ThemeKeyType } from 'styles/theme/slice/types';
-import { selectThemeKey } from 'styles/theme/slice/selectors';
+import { saveTheme } from 'providers/theme/utils';
+import { ThemeKeyType } from 'providers/theme/slice/types';
+import { selectThemeKey } from 'providers/theme/slice/selectors';
 import { HeaderDropdown } from '../HeaderDropdown';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import { useTranslation } from 'react-i18next';

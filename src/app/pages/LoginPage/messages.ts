@@ -12,4 +12,5 @@ export const messages = {
   rememberMe: () => _t(translations.pages.login.rememberMe),
   forgotPassword: () => _t(translations.pages.login.forgotPassword),
   loginWith: () => _t(translations.pages.login.loginWith),
+  login: () => _t(translations.pages.login.login),
 };

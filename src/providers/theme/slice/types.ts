@@ -1,4 +1,4 @@
-import { themes } from '../themes';
+import { themes } from 'providers/theme/themes';
 
 export type ThemeKeyType = keyof typeof themes | 'system';
 

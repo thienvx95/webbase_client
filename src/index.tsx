@@ -16,7 +16,6 @@ import FontFaceObserver from 'fontfaceobserver';
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 import 'antd/dist/reset.css';
-
 // Import root app
 import { App } from 'app';
 
@@ -24,7 +23,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { configureAppStore } from 'store/configureStore';
 
-import { ThemeProvider } from 'providers/themeProvider';
+import { ThemeProvider } from 'providers/theme/themeProvider';
 
 import reportWebVitals from 'reportWebVitals';
 
