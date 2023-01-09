@@ -1,2 +1,6 @@
-export type { AuthParams, GoogleAuthParams } from './authParams';
+export type {
+  AuthParams,
+  GoogleAuthParams,
+  RefreshTokenParam,
+} from './authParams';
 export type { AuthResult } from './authResult';

@@ -30,7 +30,11 @@
     }
   },
   "menus": {
-    "login": "Login"
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "setting": "Setting",
+    "profile": "Profile"
   },
   "theme": {
     "dark": "Dark",
@@ -40,5 +44,11 @@
   "languages": {
     "English": "English",
     "Vietnamese": "Vietnamese"
+  },
+  "errors": {
+    "100": "Username or Password is invalid",
+    "1009": "Too many requests",
+    "9999": "Unknown error",
+    "ERR_NETWORK": "Network Error"
   }
 }

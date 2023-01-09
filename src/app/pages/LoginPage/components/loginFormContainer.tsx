@@ -15,7 +15,7 @@ export const LoginFormContainer = styled.div`
       color: ${p => p.theme.text};
     }
   }
-  ${media.md} {
+  ${media.minmd} {
     padding: 32px 0 24px;
   }
 `;

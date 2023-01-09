@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Dropdown, DropDownProps } from 'antd';
 import { MenuProps } from 'rc-menu';
-import { HeaderDropDownIcon } from './HeaderDropDownIcon';
+import { HeaderDropDownIcon } from './headerDropDownIcon';
 
 export interface HeaderTopDropdownProps extends DropDownProps {
   overlayClassName?: string;
@@ -39,10 +39,10 @@ export const HeaderDropdown: React.FC<HeaderTopDropdownProps> = ({
       {...restProps}
     >
       <HeaderDropDownIcon>
-        <i className="anticon" title={title}>
-          {icon ? (
-            icon
-          ) : (
+        {icon ? (
+          icon
+        ) : (
+          <i className="anticon" title={title}>
             <svg
               viewBox="0 0 24 24"
               focusable="false"
@@ -57,8 +57,8 @@ export const HeaderDropdown: React.FC<HeaderTopDropdownProps> = ({
                 className="css-c4d79v"
               />
             </svg>
-          )}
-        </i>
+          </i>
+        )}
       </HeaderDropDownIcon>
     </Dropdown>
   );

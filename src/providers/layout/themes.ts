@@ -6,6 +6,10 @@ const lightTheme = {
   backgroundVariant: 'rgba(251,249,249,1)',
   border: 'rgba(58,52,51,0.12)',
   borderLight: 'rgba(58,52,51,0.05)',
+  borderRadius: '6px',
+  colorBgTextHover: 'rgba(0, 0, 0, 0.06)',
+  colorPrimary: '#1677ff',
+  colorBgContainer: '#ffffff',
 };
 
 const darkTheme: Theme = {
@@ -16,6 +20,10 @@ const darkTheme: Theme = {
   backgroundVariant: 'rgba(28,26,26,1)',
   border: 'rgba(241,233,231,0.15)',
   borderLight: 'rgba(241,233,231,0.05)',
+  borderRadius: '6px',
+  colorBgTextHover: 'rgba(255, 255, 255, 0.12)',
+  colorPrimary: '#1677ff',
+  colorBgContainer: '#ffffff',
 };
 
 export type Theme = typeof lightTheme;

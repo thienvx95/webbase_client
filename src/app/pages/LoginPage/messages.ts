@@ -8,7 +8,8 @@ export const messages = {
   usernameRequired: () => _t(translations.pages.login.username.required),
   passwordPlaceHolder: () => _t(translations.pages.login.password.placeholder),
   passwordRequired: () => _t(translations.pages.login.password.required),
-  loginErrorMessage: () => _t(translations.pages.login.error),
+  loginErrorMessage: (code: string) =>
+    _t(translations.errors[code], translations.pages.login.error),
   rememberMe: () => _t(translations.pages.login.rememberMe),
   forgotPassword: () => _t(translations.pages.login.forgotPassword),
   loginWith: () => _t(translations.pages.login.loginWith),

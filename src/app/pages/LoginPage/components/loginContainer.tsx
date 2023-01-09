@@ -11,7 +11,7 @@ export const LoginContainer = styled.div`
   background-position: center 110px;
   background-size: 100%;
   background-color: ${p => p.theme.background};
-  ${media.md} {
+  ${media.minmd} {
     background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
   }
 `;

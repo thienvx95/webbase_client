@@ -1,15 +1,17 @@
+import { HomePage } from 'app/pages/HomePage';
 import React from 'react';
-import { useAuth } from 'utils/hooks/useAuth';
-import { Navigate, useOutlet } from 'react-router-dom';
-import { DashboardPath } from 'utils/constants';
+import { Route, useOutlet } from 'react-router-dom';
 
 export const HomeLayout = () => {
-  const { isAuthenticated } = useAuth();
   const outlet = useOutlet();
 
-  if (isAuthenticated()) {
-    return <Navigate to={DashboardPath} replace />;
-  }
-
   return <>{outlet}</>;
+};
+
+export const HomeRoute = () => {
+  return (
+    <Route element={<HomeLayout />}>
+      <Route path="/" element={<HomePage />} />
+    </Route>
+  );
 };

@@ -1,10 +1,17 @@
-//Storage Key
-export const WebApiToken = 'Web/APIToken';
-export const WebApiRefreshhToken = 'Web/APIRefreshhToken';
-
 //Rounting Path
-export const DashboardPath = '/dashboard';
-export const LoginPath = '/login';
+export const RoutingPath = {
+  Dashboard: '/dashboard',
+  Login: '/login',
+  Account: '/dashboard/account',
+  UserProfile: '/dashboard/account/profile',
+  UserSetting: '/dashboard/account/settings',
+  NotFound: '/dashboard/*',
+};
 
 //Base Api
-export const BaseAPI = `${process.env.SERVER_URL}/api`;
+export const BaseAPI = `${process.env.REACT_APP_API_ENDPOINT}/api`;
+
+export enum ErrorCode {
+  UnknownError = '9999',
+  TooManyRequest = '1009',
+}

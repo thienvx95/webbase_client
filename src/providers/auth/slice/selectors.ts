@@ -4,19 +4,16 @@ import { RootState } from 'types';
 import { initialState } from '.';
 
 // First select the relevant part from the state
-const selectDomain = (state: RootState) => state.authenticate || initialState;
+const selectDomain = (state: RootState) => state.auth || initialState;
 
 export const selectAuthenticate = createSelector(
   [selectDomain],
   state => state,
 );
 
-export const selectLoading = createSelector(
-  [selectDomain],
-  state => state.loading,
-);
+export const selectError = createSelector([selectDomain], state => state.error);
 
-export const selectStatus = createSelector(
+export const selectCurrentUser = createSelector(
   [selectDomain],
-  state => state.status,
+  state => state.user,
 );

@@ -30,7 +30,7 @@ interface LanguageSwitchProps {
 
 const defaultLang: Array<LocalData> = [
   {
-    lang: 'en-GB',
+    lang: 'en',
     icon: '🇬🇧',
   },
 ];
@@ -53,21 +53,21 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
   const allLangUIConfig = postLocalesData ?? defaultLang;
 
   const langMenu = {
-    selectedKeys: [i18n.language],
+    selectedKeys: [i18n.language ?? ''],
     onClick: changeLang,
     items: allLangUIConfig?.map(localeObj => ({
-      key: localeObj.lang,
+      key: localeObj?.lang,
       style: menuItemStyle ?? { minWidth: '160px' },
       label: (
         <>
           <span
             role="img"
-            aria-label={localeObj?.label || 'en-US'}
+            aria-label={localeObj?.label || 'en'}
             style={menuItemIconStyle ?? { marginRight: '8px' }}
           >
             {localeObj?.icon || '🌐'}
           </span>
-          {t(messages[localeObj.lang]())}
+          {t(messages[localeObj?.lang]())}
         </>
       ),
     })),

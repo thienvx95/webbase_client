@@ -2,18 +2,17 @@ import Footer from 'app/components/Footer';
 import { GoogleOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import {
   LoginForm,
+  PageLoading,
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import React, { useState } from 'react';
-// import { flushSync } from 'react-dom';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { commonMessages } from 'app/messages';
 import { Helmet } from 'react-helmet-async';
 import { messages } from './messages';
 import { useSelector } from 'react-redux';
-import { selectAuthenticate } from 'providers/auth/slice/selectors';
-import { useAuthenticateFormSlice } from 'providers/auth/slice';
+import { selectError } from 'providers/auth/slice/selectors';
 import {
   LoginMessage,
   LoginContainer,
@@ -24,53 +23,22 @@ import {
 import { LanguageSwitch } from 'app/components/LanguageSwitch';
 import { ThemeSwitch } from 'app/components/ThemeSwitch';
 import { ForgotPassword } from './components/forgotPassword';
-import { render } from 'react-dom';
-import { Button } from 'antd';
+import { AuthParams } from 'api/auth/models';
+import { useAuth } from 'utils/hooks/useAuth';
+import { selectLoading } from 'providers/layout/slice/selectors';
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
-  // const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
-  const [type, setType] = useState<string>('account');
-  //   const { initialState, setInitialState } = useModel('@@initialState');
-  //   const fetchUserInfo = async () => {
-  //     const userInfo = await initialState?.fetchUserInfo?.();
-  //     if (userInfo) {
-  //       flushSync(() => {
-  //         setInitialState(s => ({
-  //           ...s,
-  //           currentUser: userInfo,
-  //         }));
-  //       });
-  //     }
-  //   };
+  const { login, removeLoginError } = useAuth();
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
-  //   const handleSubmit = async (values: API.LoginParams) => {
-  //     try {
-  //       // 登录
-  //       const msg = await login({ ...values, type });
-  //       if (msg.status === 'ok') {
-  //         message.success(t(messages.loginSuccessfull()));
-  //         await fetchUserInfo();
-  //         const urlParams = new URL(window.location.href).searchParams;
-  //         history.push(urlParams.get('redirect') || '/');
-  //         return;
-  //       }
-  //       console.log(msg);
-  //       // 如果失败去设置用户错误信息
-  //       setUserLoginState(msg);
-  //     } catch (error) {
-  //       const defaultLoginFailureMessage = intl.formatMessage({
-  //         id: 'pages.login.failure',
-  //         defaultMessage: '登录失败，请重试！',
-  //       });
-  //       console.log(error);
-  //       message.error(defaultLoginFailureMessage);
-  //     }
-  //   };
-  //   const { status, type: loginType } = userLoginState;
-  var { actions } = useAuthenticateFormSlice();
-  const { status } = useSelector(selectAuthenticate);
-  return (
+  useEffect(() => {
+    setButtonLoading(false);
+  }, [error]);
+
+  return !loading ? (
     <LoginContainer>
       <Helmet>
         <title>{t(commonMessages.loginMenu())}</title>
@@ -85,6 +53,9 @@ export const LoginPage: React.FC = () => {
             searchConfig: {
               submitText: t(messages.login()),
             },
+            submitButtonProps: {
+              loading: buttonLoading,
+            },
           }}
           logo={<img alt="logo" src="/logo.png" />}
           title={t(messages.loginTitle())}
@@ -97,11 +68,19 @@ export const LoginPage: React.FC = () => {
             <GoogleOutlined key="GoogleOutlined" className="icon" />,
           ]}
           onFinish={async values => {
-            // await handleSubmit(values as API.LoginParams);
+            setButtonLoading(true);
+            await login(values as AuthParams);
+          }}
+          onFieldsChange={() => {
+            if (error != null) {
+              removeLoginError();
+            }
           }}
         >
-          {status === 'error' && (
-            <LoginMessage content={t(messages.loginErrorMessage())} />
+          {error != null && (
+            <LoginMessage
+              content={t(messages.loginErrorMessage(error.code?.toString()))}
+            />
           )}
           <ProFormText
             name="username"
@@ -141,5 +120,7 @@ export const LoginPage: React.FC = () => {
       </LoginFormContainer>
       <Footer />
     </LoginContainer>
+  ) : (
+    <PageLoading />
   );
 };

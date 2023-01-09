@@ -8,3 +8,7 @@ export interface AuthParams {
 export interface GoogleAuthParams {
   code: string;
 }
+
+export interface RefreshTokenParam {
+  token: string;
+}

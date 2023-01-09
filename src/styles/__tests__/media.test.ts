@@ -3,9 +3,9 @@ import { css } from 'styled-components/macro';
 
 describe('media', () => {
   it('should return media query in css', () => {
-    const mediaQuery = `${media.xs}{color:red;}`;
+    const mediaQuery = `${media.maxsm}{color:red;}`;
     const cssVersion = css`
-      @media (min-width: ${sizes.xs}px) {
+      @media (${sizes.maxsm}px) {
         color: red;
       }
     `.join('');

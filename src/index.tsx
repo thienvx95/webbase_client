@@ -23,7 +23,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { configureAppStore } from 'store/configureStore';
 
-import { ThemeProvider } from 'providers/theme/themeProvider';
+import { LayoutProvider } from 'providers/layout/layoutProvider';
 
 import reportWebVitals from 'reportWebVitals';
 
@@ -46,13 +46,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Provider store={store}>
-    <ThemeProvider>
+    <LayoutProvider>
       <HelmetProvider>
         <React.StrictMode>
           <App />
         </React.StrictMode>
       </HelmetProvider>
-    </ThemeProvider>
+    </LayoutProvider>
   </Provider>,
 );
 

@@ -1,1 +1,1 @@
-export type { ResponseResult } from './responseResult';
+export type { ResponseResult, ErrorResult } from './responseResult';
