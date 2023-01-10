@@ -19,7 +19,7 @@ export function UserProfilePage() {
         breadcrumb: {
           routes: [
             {
-              path: '/',
+              path: RoutingPath.Dashboard,
               breadcrumbName: t(commonMessages.dashboardMenu()),
             },
             {

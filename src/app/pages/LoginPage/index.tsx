@@ -88,11 +88,11 @@ export const LoginPage: React.FC = () => {
               size: 'large',
               prefix: <UserOutlined />,
             }}
-            placeholder={t(messages.usernamePlaceHolder())}
+            placeholder={t(messages.usernamePlaceHolder()) ?? ''}
             rules={[
               {
                 required: true,
-                message: t(messages.usernameRequired()),
+                message: t(messages.usernameRequired()) ?? '',
               },
             ]}
           />
@@ -102,11 +102,11 @@ export const LoginPage: React.FC = () => {
               size: 'large',
               prefix: <LockOutlined />,
             }}
-            placeholder={t(messages.passwordPlaceHolder())}
+            placeholder={t(messages.passwordPlaceHolder()) ?? ''}
             rules={[
               {
                 required: true,
-                message: t(messages.passwordRequired()),
+                message: t(messages.passwordRequired()) ?? '',
               },
             ]}
           />

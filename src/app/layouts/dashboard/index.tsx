@@ -50,6 +50,7 @@ export const DashboardLayout = props => {
         rightContentRender={() => <RightContent />}
         isMobile={true}
         menu={{ request: request }}
+        {...settings}
       >
         {outlet}
       </ProLayout>

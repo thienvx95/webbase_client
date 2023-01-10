@@ -34,7 +34,15 @@
     "dashboard": "Dashboard",
     "logout": "Logout",
     "setting": "Setting",
-    "profile": "Profile"
+    "profile": "Profile",
+    "admin": "Admin",
+    "accountmanagement": "Account Management",
+    "menus": "Menus",
+    "users": "Users",
+    "system": "System",
+    "configuration": "Configuration",
+    "settings": "Settings",
+    "roles": "Roles"
   },
   "theme": {
     "dark": "Dark",

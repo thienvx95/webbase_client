@@ -9,9 +9,14 @@ const IconMap = {
   crown: <CrownOutlined />,
 };
 export const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
-  menus.map(({ icon, ...item }) => ({
+  menus.map(({ icon, name, children, ...item }) => ({
     ...item,
-    icon: icon && IconMap[icon as string],
+    name:
+      name != null && commonMessages[name.toLowerCase()] != null
+        ? i18next.t(commonMessages[name.toLowerCase()]()) ?? ''
+        : '',
+    icon: icon ? IconMap[icon as string] : null,
+    children: children && loopMenuItem(children),
   }));
 
 export const loopMenuTreeItem = (

@@ -7,4 +7,12 @@ export const commonMessages = {
   userSettingMenu: () => _t(translations.menus.setting),
   userProfileMenu: () => _t(translations.menus.profile),
   logoutMenu: () => _t(translations.menus.logout),
+  admin: () => _t(translations.menus.admin),
+  accountmanagement: () => _t(translations.menus.accountmanagement),
+  menus: () => _t(translations.menus.menus),
+  users: () => _t(translations.menus.users),
+  system: () => _t(translations.menus.system),
+  configuration: () => _t(translations.menus.configuration),
+  settings: () => _t(translations.menus.settings),
+  roles: () => _t(translations.menus.roles),
 };
