@@ -17,7 +17,7 @@ import {
   LoginMessage,
   LoginContainer,
   LoginFormContainer,
-  LoginTopHeaderWrapper,
+  LoginTopHeaderContainer,
   LoginSupporterContainer,
 } from './components';
 import { LanguageSwitch } from 'app/components/LanguageSwitch';
@@ -43,10 +43,10 @@ export const LoginPage: React.FC = () => {
       <Helmet>
         <title>{t(commonMessages.loginMenu())}</title>
       </Helmet>
-      <LoginTopHeaderWrapper>
+      <LoginTopHeaderContainer>
         <ThemeSwitch />
         <LanguageSwitch />
-      </LoginTopHeaderWrapper>
+      </LoginTopHeaderContainer>
       <LoginFormContainer>
         <LoginForm
           submitter={{

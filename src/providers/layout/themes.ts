@@ -10,6 +10,12 @@ const lightTheme = {
   colorBgTextHover: 'rgba(0, 0, 0, 0.06)',
   colorPrimary: '#1677ff',
   colorBgContainer: '#ffffff',
+  menuBg: '#ffffff',
+  borderWidthBase: '1px',
+  borderStyleBase: 'solid',
+  borderColorSplit: 'hsv(0, 0, 94%)',
+  headingColor: 'fade(@#000000, 85%)',
+  fontSizeBase: '14px',
 };
 
 const darkTheme: Theme = {
@@ -24,6 +30,12 @@ const darkTheme: Theme = {
   colorBgTextHover: 'rgba(255, 255, 255, 0.12)',
   colorPrimary: '#1677ff',
   colorBgContainer: '#ffffff',
+  menuBg: '#141414;',
+  borderWidthBase: '1px',
+  borderStyleBase: 'solid',
+  borderColorSplit: '#303030;',
+  headingColor: 'fade(#ffffff, 85%)',
+  fontSizeBase: '14px',
 };
 
 export type Theme = typeof lightTheme;

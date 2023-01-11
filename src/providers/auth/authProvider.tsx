@@ -1,52 +1,56 @@
 import { AuthParams } from 'api/auth/models';
-import { UserProfile } from 'api/user/models';
 import { layoutActions } from 'providers/layout/slice';
-import React, { createContext, useMemo } from 'react';
+import React, { createContext, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
 import { TokenUtil } from 'utils/tokenUtils';
-import { useAuthenticateFormSlice } from './slice';
-import { selectCurrentUser } from './slice/selectors';
+import { useAuthenticateSlice } from './slice';
+import { selectUserInformation } from './slice/selectors';
 
 type AuthContextValue = {
-  currentUser: UserProfile | null;
   isAuthenticated: () => boolean;
   login: (data: AuthParams) => void;
   logout: () => void;
   removeLoginError: () => void;
+  fetchCurrentUser: () => void;
 };
 
 export const AuthContext = createContext<AuthContextValue>({
-  currentUser: null,
   isAuthenticated: () => false,
   login: (data: AuthParams) => undefined,
   logout: () => undefined,
   removeLoginError: () => undefined,
+  fetchCurrentUser: () => undefined,
 });
 
 export const AuthProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const { actions } = useAuthenticateFormSlice();
+  const { actions } = useAuthenticateSlice();
   const { toggleLoading } = layoutActions;
-  const currentUser = useSelector(selectCurrentUser);
+  const userInformation = useSelector(selectUserInformation);
+
+  if (userInformation == null) {
+    dispatch(actions.fetchUserInformation());
+  }
   const navigate = useNavigate();
 
-  const login = async data => {
-    dispatch(actions.login(data));
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const login = useCallback(data => dispatch(actions.login(data)), []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     LocalStorageUtil.remove(CacheKey.WebApiToken);
     LocalStorageUtil.remove(CacheKey.WebApiRefreshhToken);
     navigate('/', { replace: true });
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const removeLoginError = () => {
+  const removeLoginError = useCallback(() => {
     dispatch(actions.removeError());
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const isAuthenticated = () => {
+  const isAuthenticated = useCallback(() => {
     var isAuthenticated = TokenUtil.isAuthenticated();
     if (!isAuthenticated) {
       const refreshToken = LocalStorageUtil.get<string>(
@@ -62,18 +66,23 @@ export const AuthProvider = ({ children }) => {
       dispatch(toggleLoading(false));
     }
     return isAuthenticated;
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fetchCurrentUser = useCallback(() => {
+    dispatch(actions.fetchCurrentUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const value = useMemo(
     () => ({
-      currentUser,
       isAuthenticated,
       logout,
       login,
       removeLoginError,
+      fetchCurrentUser,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentUser],
+    [fetchCurrentUser, isAuthenticated, login, logout, removeLoginError],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

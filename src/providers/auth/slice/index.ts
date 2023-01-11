@@ -1,6 +1,8 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AuthResult, RefreshTokenParam } from 'api/auth/models';
 import { ResponseResult } from 'api/common/models';
+import { UserProfile } from 'api/user/models';
+import { UserInformation } from 'api/user/models/userInformation';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
@@ -13,6 +15,7 @@ export const initialState: AuthenticateState = {
   token: LocalStorageUtil.get<string>(CacheKey.WebApiToken),
   refreshToken: LocalStorageUtil.get<string>(CacheKey.WebApiRefreshhToken),
   user: TokenUtil.getCurentUserProfile(),
+  userInformation: null,
 };
 
 const slice = createSlice({
@@ -47,12 +50,20 @@ const slice = createSlice({
     removeError(state) {
       state.error = null;
     },
+    fetchCurrentUser(state) {},
+    fetchCurrentUserSuccess(state, action: PayloadAction<UserProfile>) {
+      state.user = action.payload;
+    },
+    fetchUserInformation(state) {},
+    fetchUserInformationSuccess(state, action: PayloadAction<UserInformation>) {
+      state.userInformation = action.payload;
+    },
   },
 });
 
 export const { actions: authenticateActions, reducer } = slice;
 
-export const useAuthenticateFormSlice = () => {
+export const useAuthenticateSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
   useInjectSaga({ key: slice.name, saga: authenticateSaga });
   return { actions: slice.actions };

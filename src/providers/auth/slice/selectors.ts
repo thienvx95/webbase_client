@@ -17,3 +17,8 @@ export const selectCurrentUser = createSelector(
   [selectDomain],
   state => state.user,
 );
+
+export const selectUserInformation = createSelector(
+  [selectDomain],
+  state => state.userInformation,
+);

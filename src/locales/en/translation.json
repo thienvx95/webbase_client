@@ -27,6 +27,36 @@
       "userLayout": {
         "title": "Web Application"
       }
+    },
+    "userSetting": {
+      "baseSetting": "Basic Setting",
+      "securitySetting": "Security",
+      "notificationSetting": "Notification"
+    }
+  },
+  "form": {
+    "userForm": {
+      "title": {
+        "email": "Email",
+        "country": "Country",
+        "address": "Address",
+        "phoneNumber": "Phone Number",
+        "gender": "Gender",
+        "fullname": "Full Name"
+      },
+      "require": {
+        "email": "Email is required!",
+        "country": "Country is required!",
+        "address": "Address is required!",
+        "phoneNumber": "Phone Number is required!",
+        "gender": "Gender is required!",
+        "fullname": "Full Name is required!"
+      }
+    },
+    "button": {
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "ok": "Ok"
     }
   },
   "menus": {

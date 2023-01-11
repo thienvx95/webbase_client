@@ -16,3 +16,15 @@ export const commonMessages = {
   settings: () => _t(translations.menus.settings),
   roles: () => _t(translations.menus.roles),
 };
+
+export const formMessages = {
+  title: (property: string) => _t(translations.form.userForm.title[property]),
+  require: (property: string) =>
+    _t(translations.form.userForm.require[property]),
+};
+
+export const buttonMessages = {
+  submit: () => _t(translations.form.button.submit),
+  cancel: () => _t(translations.form.button.cancel),
+  ok: () => _t(translations.form.button.ok),
+};

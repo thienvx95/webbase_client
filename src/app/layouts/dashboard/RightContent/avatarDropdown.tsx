@@ -1,8 +1,4 @@
-import {
-  LogoutOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback, useMemo } from 'react';
@@ -17,21 +13,18 @@ import { selectDashboardSettings } from 'providers/layout/slice/selectors';
 import { useTranslation } from 'react-i18next';
 import { commonMessages } from 'app/messages';
 import { useNavigate } from 'react-router-dom';
+import { selectCurrentUser } from 'providers/auth/slice/selectors';
 
 export type GlobalHeaderRightProps = {};
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
   const { t } = useTranslation();
-  const { currentUser, logout } = useAuth();
+  const { logout } = useAuth();
+  const currentUser = useSelector(selectCurrentUser);
   const navigate = useNavigate();
   const settings = useSelector(selectDashboardSettings);
   const menuItems = useMemo(() => {
     return [
-      {
-        key: 'profile',
-        icon: <UserOutlined />,
-        label: t(commonMessages.userProfileMenu()),
-      },
       {
         key: 'settings',
         icon: <SettingOutlined />,

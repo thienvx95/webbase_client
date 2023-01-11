@@ -5,6 +5,7 @@ import { call, put, takeLatest, delay } from 'redux-saga/effects';
 import { authenticateActions as actions } from '.';
 import { RoutingPath } from 'utils/constants';
 import { globalNavigate } from 'app';
+import { UserAPI } from 'api/user/userApi';
 
 export function* loginSaga(data: PayloadAction<AuthParams>) {
   yield delay(500);
@@ -36,10 +37,36 @@ export function* refreshTokenSaga(data: PayloadAction<string>) {
   }
 }
 
+export function* fetchCurrentUserSaga() {
+  yield delay(500);
+  try {
+    const result = yield call(UserAPI.getUserProfile);
+    if (result.success) {
+      yield put(actions.fetchCurrentUserSuccess(result));
+    }
+  } catch (err: any) {
+    yield put(actions.refreshError());
+  }
+}
+
+export function* fetchUserInformationSaga() {
+  yield delay(500);
+  try {
+    const result = yield call(UserAPI.getCurrentIpLookup);
+    if (result.success) {
+      yield put(actions.fetchUserInformationSuccess(result));
+    }
+  } catch (err: any) {
+    yield put(actions.refreshError());
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
 export function* authenticateSaga() {
   yield takeLatest(actions.login.type, loginSaga);
   yield takeLatest(actions.refreshToken.type, refreshTokenSaga);
+  yield takeLatest(actions.fetchCurrentUser.type, fetchCurrentUserSaga);
+  yield takeLatest(actions.fetchUserInformation.type, fetchUserInformationSaga);
 }
