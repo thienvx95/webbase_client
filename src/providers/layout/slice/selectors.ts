@@ -3,15 +3,11 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'types';
 import { initialState } from '.';
 import { themes } from 'providers/layout/themes';
-import { isSystemDark } from 'providers/layout/utils';
-import { loopMenuItem } from './menuLoop';
+import { loopMenuItem } from '../../../utils/menuLoop';
 
 export const selectTheme = createSelector(
   [(state: RootState) => state.appLayout || initialState],
   appLayout => {
-    if (appLayout.theme === 'system') {
-      return isSystemDark ? themes.dark : themes.light;
-    }
     return themes[appLayout.theme];
   },
 );

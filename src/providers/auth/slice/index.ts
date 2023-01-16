@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AuthResult, RefreshTokenParam } from 'api/auth/models';
 import { ResponseResult } from 'api/common/models';
-import { UserProfile } from 'api/user/models';
+import { UserDetail } from 'api/user/models';
 import { UserInformation } from 'api/user/models/userInformation';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
@@ -14,7 +14,7 @@ export const initialState: AuthenticateState = {
   error: null,
   token: LocalStorageUtil.get<string>(CacheKey.WebApiToken),
   refreshToken: LocalStorageUtil.get<string>(CacheKey.WebApiRefreshhToken),
-  user: TokenUtil.getCurentUserProfile(),
+  user: null,
   userInformation: null,
 };
 
@@ -51,13 +51,18 @@ const slice = createSlice({
       state.error = null;
     },
     fetchCurrentUser(state) {},
-    fetchCurrentUserSuccess(state, action: PayloadAction<UserProfile>) {
-      state.user = action.payload;
+    fetchCurrentUserSuccess(
+      state,
+      action: PayloadAction<ResponseResult<UserDetail>>,
+    ) {
+      state.user = action.payload.data;
     },
     fetchUserInformation(state) {},
     fetchUserInformationSuccess(state, action: PayloadAction<UserInformation>) {
       state.userInformation = action.payload;
     },
+    updateCurrentUser(state, action: PayloadAction<UserDetail>) {},
+    uploadAvatar(state, action: PayloadAction<UserDetail>) {},
   },
 });
 

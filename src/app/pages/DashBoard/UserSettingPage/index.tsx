@@ -1,12 +1,11 @@
 import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { Menu } from 'antd';
+import { MenuItemType } from 'antd/es/menu/hooks/useItems';
 import { commonMessages } from 'app/messages';
-import { selectLoading } from 'providers/layout/slice/selectors';
-import * as React from 'react';
+import React, { useRef, useLayoutEffect, useCallback } from 'react';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import i18next from 'i18next';
 import {
   BaseView,
   LeftMenu,
@@ -17,8 +16,6 @@ import {
 } from './components';
 import { messages } from './messages';
 
-const { Item } = Menu;
-
 type SettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
 type SettingsState = {
   mode: 'inline' | 'horizontal';
@@ -26,44 +23,43 @@ type SettingsState = {
 };
 
 export const UserSettingPage = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const [initConfig, setInitConfig] = useState<SettingsState>({
     mode: 'inline',
     selectKey: 'base',
   });
-  const loading = useSelector(selectLoading);
+  const refDiv = useRef<HTMLDivElement>(null);
 
-  const dom = React.useRef<HTMLDivElement>();
+  useLayoutEffect(() => {
+    if (refDiv.current) {
+      window.addEventListener('resize', resize);
+    }
+    return () => {
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
 
-  const resize = () => {
+  const resize = useCallback(() => {
     requestAnimationFrame(() => {
-      if (!dom.current) {
+      if (!refDiv.current) {
         return;
       }
       let mode: 'inline' | 'horizontal' = 'inline';
-      const { offsetWidth } = dom.current;
-      if (dom.current.offsetWidth < 641 && offsetWidth > 400) {
+      const { offsetWidth } = refDiv.current;
+      if (refDiv.current.offsetWidth < 641 && offsetWidth > 400) {
         mode = 'horizontal';
       }
       if (window.innerWidth < 768 && offsetWidth > 400) {
         mode = 'horizontal';
       }
-      setInitConfig({ ...initConfig, mode: mode as SettingsState['mode'] });
+
+      if (initConfig.mode !== mode) {
+        setInitConfig({ ...initConfig, mode: mode as SettingsState['mode'] });
+      }
     });
-  };
+  }, []);
 
-  React.useLayoutEffect(() => {
-    if (dom.current) {
-      window.addEventListener('resize', resize);
-      resize();
-    }
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dom.current]);
-
-  const renderChildren = () => {
+  const renderChildren = React.useMemo(() => {
     const { selectKey } = initConfig;
     switch (selectKey) {
       case 'base':
@@ -75,23 +71,25 @@ export const UserSettingPage = () => {
       default:
         return null;
     }
-  };
+  }, [initConfig]);
 
-  const menuMap: Record<string, React.ReactNode> = {
-    base: t(messages.baseSetting()),
-    security: t(messages.securitySetting()),
-    notification: t(messages.notificationSetting()),
-  };
-
-  const getMenu = React.useCallback(() => {
-    return Object.keys(menuMap).map(item => (
-      <Item key={item}>{menuMap[item]}</Item>
-    ));
-  }, []);
+  const items: MenuItemType[] = [
+    {
+      label: t(messages.baseSetting()),
+      key: 'base',
+    },
+    {
+      label: t(messages.securitySetting()),
+      key: 'security',
+    },
+    {
+      label: t(messages.notificationSetting()),
+      key: 'notification',
+    },
+  ];
 
   return (
     <PageContainer
-      loading={loading}
       header={{
         title: t(commonMessages.userSettingMenu()),
       }}
@@ -101,13 +99,7 @@ export const UserSettingPage = () => {
       </Helmet>
 
       <GridContent>
-        <UserSettingContainer
-          ref={ref => {
-            if (ref) {
-              dom.current = ref;
-            }
-          }}
-        >
+        <UserSettingContainer ref={refDiv}>
           <LeftMenu>
             <Menu
               mode={initConfig.mode}
@@ -118,13 +110,14 @@ export const UserSettingPage = () => {
                   selectKey: key as SettingsStateKeys,
                 });
               }}
-            >
-              {getMenu()}
-            </Menu>
+              items={items}
+            />
           </LeftMenu>
           <RightMenu>
-            <div className="title">{menuMap[initConfig.selectKey]}</div>
-            {renderChildren()}
+            <div className="title">
+              {items.find(x => x.key === initConfig.selectKey)?.label}
+            </div>
+            {renderChildren}
           </RightMenu>
         </UserSettingContainer>
       </GridContent>

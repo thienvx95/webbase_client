@@ -17,7 +17,7 @@ export const ProtectedLayout = props => {
 
 export const ProtectedRoute = () => {
   return (
-    <Route path={RoutingPath.Dashboard} element={<ProtectedLayout />}>
+    <Route element={<ProtectedLayout />}>
       <Route path={RoutingPath.Dashboard} element={<DashboardPage />} />
       <Route path={RoutingPath.UserSetting} element={<UserSettingPage />} />
       <Route path={RoutingPath.NotFound} element={<DashboardNoFoundPage />} />

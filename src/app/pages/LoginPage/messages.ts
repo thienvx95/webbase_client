@@ -9,7 +9,7 @@ export const messages = {
   passwordPlaceHolder: () => _t(translations.pages.login.password.placeholder),
   passwordRequired: () => _t(translations.pages.login.password.required),
   loginErrorMessage: (code: string) =>
-    _t(translations.errors[code], translations.pages.login.error),
+    _t(translations.notification.errors[code], translations.pages.login.error),
   rememberMe: () => _t(translations.pages.login.rememberMe),
   forgotPassword: () => _t(translations.pages.login.forgotPassword),
   loginWith: () => _t(translations.pages.login.loginWith),

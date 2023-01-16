@@ -51,7 +51,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
       navigate('/');
       return;
     }
-    navigate(`account/${key}`);
+    navigate(`dashboard/account/${key}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -67,7 +67,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
     </ActionMenu>
   );
 
-  if (!currentUser || !currentUser.fullname) {
+  if (!currentUser || !currentUser.lastName) {
     return loading;
   }
 
@@ -82,7 +82,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
         <ActionMenu>
           <AvatarLogo src={currentUser?.avatar} />
           {settings?.layout !== 'side' ? (
-            <AvatarName className="anticon">{currentUser?.fullname}</AvatarName>
+            <AvatarName className="anticon">{`${currentUser?.firstName} ${currentUser?.lastName}`}</AvatarName>
           ) : null}
         </ActionMenu>
       }

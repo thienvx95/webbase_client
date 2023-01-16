@@ -7,7 +7,7 @@ export const CommonAPIPath = {
 };
 
 export const CommonAPI = {
-  async fetchMenu(): Promise<ResponseResult<MenuResult>> {
+  async fetchMenu(): Promise<ResponseResult<MenuResult[]>> {
     return await httpClient.get(CommonAPIPath.fetchMenu);
   },
 };

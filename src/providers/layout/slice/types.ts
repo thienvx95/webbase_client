@@ -2,7 +2,7 @@ import { ProSettings } from '@ant-design/pro-components';
 import { MenuResult } from 'api/common/models/menuResult';
 import { themes } from 'providers/layout/themes';
 
-export type ThemeKeyType = keyof typeof themes | 'system';
+export type ThemeKeyType = keyof typeof themes;
 
 export interface AppLayoutState {
   theme: ThemeKeyType;

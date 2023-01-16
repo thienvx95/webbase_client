@@ -17,7 +17,7 @@ import {
 
 import { GlobalStyle } from 'styles/global-styles';
 
-import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import { AuthProvider } from 'providers/auth/authProvider';
 import { HomeRoute } from 'app/layouts/homeLayout';
 import { ProtectedRoute } from 'app/layouts/protectedLayout';
@@ -32,13 +32,12 @@ export const GlobalHistory = () => {
 };
 
 export function App() {
-  const { i18n } = useTranslation();
   return (
     <BrowserRouter>
       <GlobalHistory />
       <Helmet
         titleTemplate="%s - Web Application"
-        htmlAttributes={{ lang: i18n.language }}
+        htmlAttributes={{ lang: i18next.language }}
       >
         <meta name="description" content="Web application" />
       </Helmet>

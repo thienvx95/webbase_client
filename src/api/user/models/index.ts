@@ -1,1 +1,2 @@
-export type { UserProfile } from './userProfile';
+export type { UserDetail } from './userDetail';
+export type { UserInformation } from './userInformation';

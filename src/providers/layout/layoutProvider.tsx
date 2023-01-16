@@ -3,7 +3,6 @@ import { ThemeProvider as OriginalThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useThemeSlice } from 'providers/layout/slice';
 import { selectTheme, selectThemeKey } from 'providers/layout/slice/selectors';
-import { isSystemDark } from 'providers/layout/utils';
 import { ProConfigProvider } from '@ant-design/pro-provider';
 
 export const LayoutProvider = (props: { children: React.ReactChild }) => {
@@ -17,9 +16,7 @@ export const LayoutProvider = (props: { children: React.ReactChild }) => {
     if (themeKey === 'dark') {
       return true;
     }
-    if (themeKey === 'system') {
-      return isSystemDark;
-    }
+    return false;
   }, [themeKey]);
 
   return (

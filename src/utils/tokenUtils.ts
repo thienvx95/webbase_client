@@ -1,11 +1,11 @@
 import decode, { JwtPayload } from 'jwt-decode';
 import { CacheKey, LocalStorageUtil } from './localStorageUtil';
 import { isEmpty } from 'lodash';
-import { UserProfile } from 'api/user/models';
+import { UserDetail } from 'api/user/models';
 
 interface ITokenUtil {
   isAuthenticated: () => boolean;
-  getCurentUserProfile: () => UserProfile | null;
+  getCurentUserProfile: () => UserDetail | null;
 }
 
 export const TokenUtil: ITokenUtil = {
@@ -26,11 +26,11 @@ export const TokenUtil: ITokenUtil = {
     }
     return true;
   },
-  getCurentUserProfile: (): UserProfile | null => {
+  getCurentUserProfile: (): UserDetail | null => {
     const token = LocalStorageUtil.get<string>(CacheKey.WebApiToken);
     if (isEmpty(token)) return null;
     try {
-      return decode(token) as UserProfile;
+      return decode(token) as UserDetail;
     } catch (err) {
       return null;
     }

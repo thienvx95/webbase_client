@@ -11,36 +11,49 @@ import {
   selectMenus,
 } from 'providers/layout/slice/selectors';
 import { isEmpty } from 'lodash';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useOutlet } from 'react-router-dom';
 import styled from 'styled-components';
 import RightContent from './RightContent';
-
+import isEqual from 'lodash/isEqual';
+import { useRequest } from 'utils/hooks/useRequest';
+import { authenticateActions } from 'providers/auth/slice';
 const ProLayoutContainer = styled.div`
   .ant-pro-layout-container {
     min-height: 100vh !important;
   }
 `;
 
-export const DashboardLayout = props => {
+export const DashboardLayout = () => {
   const dispatch = useDispatch();
-  const { updateSettings, fetchMenu } = layoutActions;
+  const outlet = useOutlet();
   const settings = useSelector(selectDashboardSettings);
 
-  const outlet = useOutlet();
   useEffect(() => {
-    dispatch(fetchMenu());
+    dispatch(authenticateActions.fetchCurrentUser());
   }, []);
-  const menu = useSelector(selectMenus);
-  if (isEmpty(menu)) {
+
+  const { data: menus, loading } = useRequest<MenuDataItem[]>(
+    layoutActions.fetchMenu,
+    selectMenus,
+  );
+
+  const onSettingChange = useCallback(
+    newSettings => {
+      if (!isEqual(newSettings, settings)) {
+        dispatch(layoutActions.updateSettings(newSettings));
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [settings],
+  );
+
+  if (loading || menus === undefined) {
     return <PageLoading />;
   }
 
-  const request = async (params: any, defaultMenuData: MenuDataItem[]) => {
-    return menu;
-  };
   return (
     <ProLayoutContainer id="dashboard-container">
       <ProLayout
@@ -49,7 +62,9 @@ export const DashboardLayout = props => {
         footerRender={() => <Footer />}
         rightContentRender={() => <RightContent />}
         isMobile={true}
-        menu={{ request: request }}
+        menu={{
+          request: async () => menus,
+        }}
         {...settings}
       >
         {outlet}
@@ -58,7 +73,7 @@ export const DashboardLayout = props => {
         enableDarkTheme
         getContainer={() => document.getElementById('dashboard-container')}
         settings={settings}
-        onSettingChange={setting => dispatch(updateSettings(setting))}
+        onSettingChange={onSettingChange}
         disableUrlParams={true}
         hideCopyButton={true}
         hideHintAlert={true}

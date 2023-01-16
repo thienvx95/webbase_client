@@ -33,6 +33,10 @@ const defaultLang: Array<LocalData> = [
     lang: 'en',
     icon: '🇬🇧',
   },
+  {
+    lang: 'vi',
+    icon: 'vn',
+  },
 ];
 
 export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({

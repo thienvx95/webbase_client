@@ -9,11 +9,28 @@ import { layoutSaga } from './saga';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
 
 export const initialState: AppLayoutState = {
-  theme: LocalStorageUtil.get<ThemeKeyType>(CacheKey.Theme) || 'system',
+  theme: LocalStorageUtil.get<ThemeKeyType>(CacheKey.Theme) ?? 'light',
   loading: false,
-  settings: {
-    layout: 'side',
-  },
+  settings:
+    LocalStorageUtil.get<ThemeKeyType>(CacheKey.Theme) === 'dark'
+      ? {
+          colorPrimary: '#1677FF',
+          contentWidth: 'Fluid',
+          fixSiderbar: true,
+          fixedHeader: false,
+          layout: 'side',
+          navTheme: 'realDark',
+          splitMenus: false,
+        }
+      : {
+          colorPrimary: '#1677FF',
+          contentWidth: 'Fluid',
+          fixSiderbar: true,
+          fixedHeader: false,
+          layout: 'side',
+          navTheme: 'light',
+          splitMenus: false,
+        },
   menus: [],
 };
 

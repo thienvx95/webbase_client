@@ -126,6 +126,16 @@ class HttpClient implements IHttpClient {
   ): Promise<R> {
     return this.http.delete<T, R>(url, config);
   }
+
+  uploadFiles<T>(url: string, files: File[], fileType: string): Promise<T> {
+    var formData = new FormData();
+    files.forEach(x => formData.append(fileType, x));
+    return this.http.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 }
 
 export const httpClient = new HttpClient();

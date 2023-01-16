@@ -18,13 +18,14 @@ export const commonMessages = {
 };
 
 export const formMessages = {
-  title: (property: string) => _t(translations.form.userForm.title[property]),
-  require: (property: string) =>
-    _t(translations.form.userForm.require[property]),
+  title: (property: string) => _t(translations.form.title[property]),
+  require: (property: string) => _t(translations.form.require[property]),
+  invalid: (property: string) => _t(translations.form.invalid[property]),
 };
 
 export const buttonMessages = {
   submit: () => _t(translations.form.button.submit),
   cancel: () => _t(translations.form.button.cancel),
   ok: () => _t(translations.form.button.ok),
+  upload: () => _t(translations.form.button.upload),
 };

@@ -1,26 +1,38 @@
 import { notification } from 'antd';
 import i18next from 'i18next';
 import { messages } from './messages';
-
+import { stringFormat } from 'utils/functions';
 export interface INotification {
-  success: (key: string, isTranlation?: boolean) => void;
-  warning: (key: string, isTranlation?: boolean) => void;
-  error: (key: string, isTranlation?: boolean) => void;
+  success: (key: string, value?: string[], isTranlation?: boolean) => void;
+  warning: (key: string, value?: string[], isTranlation?: boolean) => void;
+  error: (key: string, value?: string[], isTranlation?: boolean) => void;
 }
 export const Notification: INotification = {
-  success: (key: string, isTranlation = true): void => {
+  success: (key: string, values?: string[], isTranlation = true): void => {
     notification.success({
-      message: isTranlation ? i18next.t(messages[key]()).toString() : key,
+      message: getMessage(key, values, isTranlation),
     });
   },
-  warning: (key: string, isTranlation = true): void => {
+  warning: (key: string, values?: string[], isTranlation = true): void => {
     notification.warning({
-      message: isTranlation ? i18next.t(messages[key]()).toString() : key,
+      message: getMessage(key, values, isTranlation),
     });
   },
-  error: (key: string, isTranlation = true): void => {
+  error: (key: string, values?: string[], isTranlation = true): void => {
     notification.error({
-      message: isTranlation ? i18next.t(messages[key]()).toString() : key,
+      message: getMessage(key, values, isTranlation),
     });
   },
+};
+
+const getMessage = (
+  key: string,
+  values?: string[],
+  isTranlation = true,
+): string => {
+  let message = isTranlation ? i18next.t(messages.error(key)).toString() : key;
+  if (values != null && values.length) {
+    message = stringFormat(message, ...values);
+  }
+  return message;
 };

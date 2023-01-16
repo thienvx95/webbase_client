@@ -1,19 +1,19 @@
 import { AuthParams } from 'api/auth/models';
+import { UserDetail } from 'api/user/models/userDetail';
 import { layoutActions } from 'providers/layout/slice';
 import React, { createContext, useMemo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
 import { TokenUtil } from 'utils/tokenUtils';
 import { useAuthenticateSlice } from './slice';
-import { selectUserInformation } from './slice/selectors';
 
 type AuthContextValue = {
   isAuthenticated: () => boolean;
   login: (data: AuthParams) => void;
   logout: () => void;
   removeLoginError: () => void;
-  fetchCurrentUser: () => void;
+  updateCurrentUser: (user: UserDetail) => void;
 };
 
 export const AuthContext = createContext<AuthContextValue>({
@@ -21,18 +21,14 @@ export const AuthContext = createContext<AuthContextValue>({
   login: (data: AuthParams) => undefined,
   logout: () => undefined,
   removeLoginError: () => undefined,
-  fetchCurrentUser: () => undefined,
+  updateCurrentUser: (user: UserDetail) => undefined,
 });
 
 export const AuthProvider = ({ children }) => {
   const dispatch = useDispatch();
   const { actions } = useAuthenticateSlice();
   const { toggleLoading } = layoutActions;
-  const userInformation = useSelector(selectUserInformation);
 
-  if (userInformation == null) {
-    dispatch(actions.fetchUserInformation());
-  }
   const navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,8 +65,8 @@ export const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchCurrentUser = useCallback(() => {
-    dispatch(actions.fetchCurrentUser());
+  const updateCurrentUser = useCallback((user: UserDetail) => {
+    dispatch(actions.updateCurrentUser(user));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -80,9 +76,9 @@ export const AuthProvider = ({ children }) => {
       logout,
       login,
       removeLoginError,
-      fetchCurrentUser,
+      updateCurrentUser,
     }),
-    [fetchCurrentUser, isAuthenticated, login, logout, removeLoginError],
+    [isAuthenticated, login, logout, removeLoginError, updateCurrentUser],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

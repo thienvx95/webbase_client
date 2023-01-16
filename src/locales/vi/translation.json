@@ -75,16 +75,16 @@
   "menus": {
     "login": "Login",
     "dashboard": "Dashboard",
-    "logout": "Logout",
-    "setting": "Setting",
-    "profile": "Profile",
+    "logout": "Đăng xuất",
+    "setting": "Thiết lập",
+    "profile": "Thông tin cá nhân",
     "admin": "Admin",
     "accountmanagement": "Account Management",
     "menus": "Menus",
     "users": "Users",
     "system": "System",
     "configuration": "Configuration",
-    "settings": "Settings",
+    "settings": "Thiết lập",
     "roles": "Roles"
   },
   "theme": {
@@ -93,8 +93,8 @@
     "light": "Light"
   },
   "languages": {
-    "English": "English",
-    "Vietnamese": "Vietnamese"
+    "English": "Tiếng Anh",
+    "Vietnamese": "Tiếng Việt"
   },
   "notification": {
     "success": {
@@ -109,9 +109,7 @@
       "230": "Deleted failed!",
       "1009": "Too many requests",
       "9999": "Unknown error",
-      "ERR_NETWORK": "Network Error",
-      "LimitFileUpload": "You can only upload {0} file!",
-      "LimitFileSizeUpload": "{0} must smaller than {1}!"
+      "ERR_NETWORK": "Network Error"
     },
     "warning": {}
   }
