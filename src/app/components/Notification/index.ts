@@ -10,27 +10,29 @@ export interface INotification {
 export const Notification: INotification = {
   success: (key: string, values?: string[], isTranlation = true): void => {
     notification.success({
-      message: getMessage(key, values, isTranlation),
+      message: getMessage(key, 'success', values, isTranlation),
     });
   },
   warning: (key: string, values?: string[], isTranlation = true): void => {
     notification.warning({
-      message: getMessage(key, values, isTranlation),
+      message: getMessage(key, 'warning', values, isTranlation),
     });
   },
   error: (key: string, values?: string[], isTranlation = true): void => {
+    console.log('🚀 ~ file: index.ts:22 ~ key', key);
     notification.error({
-      message: getMessage(key, values, isTranlation),
+      message: getMessage(key, 'error', values, isTranlation),
     });
   },
 };
 
 const getMessage = (
   key: string,
+  type: string,
   values?: string[],
   isTranlation = true,
 ): string => {
-  let message = isTranlation ? i18next.t(messages.error(key)).toString() : key;
+  let message = isTranlation ? i18next.t(messages[type](key)).toString() : key;
   if (values != null && values.length) {
     message = stringFormat(message, ...values);
   }

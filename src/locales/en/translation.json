@@ -104,10 +104,11 @@
     },
     "errors": {
       "100": "Username or Password is invalid",
+      "200": "Upload failed!",
       "210": "Updated failed!",
       "220": "Created failed!",
       "230": "Deleted failed!",
-      "1009": "Too many requests",
+      "1009": "Too many requests. Try again after {0} seconds",
       "9999": "Unknown error",
       "ERR_NETWORK": "Network Error",
       "LimitFileUpload": "You can only upload {0} file!",

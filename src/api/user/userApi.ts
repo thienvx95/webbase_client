@@ -25,7 +25,7 @@ export const UserAPI = {
   },
   async uploadAvatar(files: File[]): Promise<ResponseResult<boolean>> {
     return await httpClient.uploadFiles(
-      UserAPIPath.updateUserProfile,
+      UserAPIPath.uploadAvatar,
       files,
       'image',
     );

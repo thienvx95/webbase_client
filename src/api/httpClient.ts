@@ -1,16 +1,24 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Notification } from 'app/components/Notification';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 import { isEmpty } from 'lodash';
-import { BaseAPI } from 'utils/constants';
+import { BaseAPI, ErrorCode } from 'utils/constants';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
 import { AuthAPIPath } from './auth/authApi';
 import { AuthResult } from './auth/models';
+import { ResponseResult } from './common/models';
 
 enum StatusCode {
   BadRequest = 400,
   Unauthorized = 401,
   Forbidden = 403,
+  NotFound = 404,
   TooManyRequests = 429,
   InternalServerError = 500,
 }
@@ -47,8 +55,9 @@ class HttpClient implements IHttpClient {
       interceptNetworkError: false,
     });
 
-    http.interceptors.response.use(this.responseInterceptors, error =>
-      Promise.reject(error),
+    http.interceptors.response.use(
+      this.responseInterceptors,
+      this.responseErrorInterceptors,
     );
 
     return http;
@@ -89,6 +98,21 @@ class HttpClient implements IHttpClient {
 
   private responseInterceptors = (response: AxiosResponse) => {
     return response.data;
+  };
+  private responseErrorInterceptors = (error: AxiosError) => {
+    if (error.response?.status === StatusCode.TooManyRequests) {
+      var rateLimitRest = error.response.headers['RateLimit-Reset'];
+      Notification.error(ErrorCode.TooManyRequest, [`${rateLimitRest}`]);
+    }
+    if (error.response?.status === StatusCode.NotFound) {
+      Notification.error(ErrorCode.UnknownError);
+    }
+
+    if (error.response?.status === StatusCode.BadRequest) {
+      const data = error.response.data as ResponseResult<boolean>;
+      Notification.error(data.code);
+    }
+    Promise.reject(error);
   };
 
   request<T = any, R = AxiosResponse<T>>(

@@ -62,7 +62,6 @@ const slice = createSlice({
       state.userInformation = action.payload;
     },
     updateCurrentUser(state, action: PayloadAction<UserDetail>) {},
-    uploadAvatar(state, action: PayloadAction<UserDetail>) {},
   },
 });
 

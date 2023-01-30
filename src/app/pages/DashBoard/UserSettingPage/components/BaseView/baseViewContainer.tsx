@@ -14,4 +14,9 @@ export const BaseViewContainer = styled.div`
   ${media.maxxl} {
     flex-direction: column-reverse;
   }
+
+  .ant-pro-form-group-title {
+    margin-block-end: 8px;
+    font-weight: 500;
+  }
 `;

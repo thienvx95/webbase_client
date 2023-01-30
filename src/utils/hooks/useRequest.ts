@@ -7,8 +7,8 @@ export const useRequest = <T>(action: any, select: any) => {
   const previousValue = usePrevious(selectData);
   const dispatch = useDispatch();
   useEffect(() => {
-    //setData(selectData);
     dispatch(action());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const result = useMemo(() => {
@@ -17,7 +17,7 @@ export const useRequest = <T>(action: any, select: any) => {
     }
 
     return { data: undefined, loading: true };
-  }, [selectData]);
+  }, [selectData, previousValue]);
 
   return result;
 };

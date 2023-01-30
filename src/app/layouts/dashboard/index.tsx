@@ -10,7 +10,6 @@ import {
   selectDashboardSettings,
   selectMenus,
 } from 'providers/layout/slice/selectors';
-import { isEmpty } from 'lodash';
 import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -33,6 +32,7 @@ export const DashboardLayout = () => {
 
   useEffect(() => {
     dispatch(authenticateActions.fetchCurrentUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { data: menus, loading } = useRequest<MenuDataItem[]>(

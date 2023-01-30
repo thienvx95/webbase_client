@@ -83,25 +83,6 @@ export function* updateCurentUserSaga(data: PayloadAction<UserDetail>) {
   }
 }
 
-export function* uploadAvatarSaga(data: PayloadAction<File[]>) {
-  yield put(layoutActions.toggleLoading(true));
-  yield delay(500);
-  try {
-    const result = yield call(UserAPI.uploadAvatar, data.payload);
-    if (result.success) {
-      yield put(actions.fetchCurrentUser());
-      Notification.success('update');
-      return;
-    } else {
-      Notification.error(result?.code);
-    }
-  } catch (err: any) {
-    Notification.error(ErrorCode.UnknownError);
-  } finally {
-    yield put(layoutActions.toggleLoading(false));
-  }
-}
-
 /**
  * Root saga manages watcher lifecycle
  */
@@ -111,5 +92,4 @@ export function* authenticateSaga() {
   yield takeLatest(actions.fetchCurrentUser.type, fetchCurrentUserSaga);
   yield takeLatest(actions.fetchUserInformation.type, fetchUserInformationSaga);
   yield takeLatest(actions.updateCurrentUser.type, updateCurentUserSaga);
-  yield takeLatest(actions.uploadAvatar.type, uploadAvatarSaga);
 }
