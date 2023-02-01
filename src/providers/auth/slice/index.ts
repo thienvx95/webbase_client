@@ -1,12 +1,9 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AuthResult, RefreshTokenParam } from 'api/auth/models';
 import { ResponseResult } from 'api/common/models';
-import { UserDetail } from 'api/user/models';
-import { UserInformation } from 'api/user/models/userInformation';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { TokenUtil } from 'utils/tokenUtils';
 import { authenticateSaga } from './saga';
 import { AuthenticateState } from './types';
 
@@ -14,8 +11,6 @@ export const initialState: AuthenticateState = {
   error: null,
   token: LocalStorageUtil.get<string>(CacheKey.WebApiToken),
   refreshToken: LocalStorageUtil.get<string>(CacheKey.WebApiRefreshhToken),
-  user: null,
-  userInformation: null,
 };
 
 const slice = createSlice({
@@ -29,7 +24,6 @@ const slice = createSlice({
         code: action.payload?.code,
         errors: action.payload?.errors,
       };
-      state.user = null;
     },
     authSuccess(state, action: PayloadAction<ResponseResult<AuthResult>>) {
       state.error = null;
@@ -40,7 +34,6 @@ const slice = createSlice({
         CacheKey.WebApiRefreshhToken,
         action.payload.data.refreshToken,
       );
-      state.user = TokenUtil.getCurentUserProfile();
     },
     refreshToken(state, action: PayloadAction<RefreshTokenParam>) {},
     refreshError(state) {
@@ -50,18 +43,6 @@ const slice = createSlice({
     removeError(state) {
       state.error = null;
     },
-    fetchCurrentUser(state) {},
-    fetchCurrentUserSuccess(
-      state,
-      action: PayloadAction<ResponseResult<UserDetail>>,
-    ) {
-      state.user = action.payload.data;
-    },
-    fetchUserInformation(state) {},
-    fetchUserInformationSuccess(state, action: PayloadAction<UserInformation>) {
-      state.userInformation = action.payload;
-    },
-    updateCurrentUser(state, action: PayloadAction<UserDetail>) {},
   },
 });
 

@@ -29,8 +29,24 @@
       }
     },
     "userSetting": {
-      "baseSetting": "Basic Setting",
-      "securitySetting": "Security",
+      "personalInformation": "Personal information",
+      "securitySetting": {
+        "title": "Security",
+        "loginSecurity": "Login Security",
+        "changePassword": {
+          "title": "Password",
+          "strong": "Strong",
+          "medium": "Medium",
+          "weak": "Weak",
+          "veryWeak": "Very weak",
+          "passwordStrength": "New password strength",
+          "description": "It's a good idea to use a strong password that you don't use elsewhere"
+        },
+        "loginActivity": {
+          "title": "Login Activity",
+          "description": "Where You're Logged In"
+        }
+      },
       "notificationSetting": "Notification"
     }
   },
@@ -48,7 +64,10 @@
       "zipCode": "Postal / Zip Code",
       "city": "City",
       "country": "Country",
-      "avatar": "Avatar"
+      "avatar": "Avatar",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "New password, again"
     },
     "require": {
       "firstName": "First name is required!",
@@ -59,17 +78,23 @@
       "gender": "Gender is required!",
       "fullname": "Full Name is required!",
       "phonecode": "Area code is required!",
-      "phonenumber": "Phone Number is required!"
+      "phonenumber": "Phone Number is required!",
+      "currentPassword": "Current password is required!",
+      "newPassword": "New password is required!",
+      "confirmPassword": "Retype new password is required!"
     },
     "invalid": {
-      "email": "Email is not valid!"
+      "email": "Email is not valid!",
+      "newPassword": "New password cannot be the same as current!",
+      "confirmPassword": "The two passwords that you entered do not match!"
     },
     "placeholder": {},
     "button": {
       "submit": "Submit",
       "cancel": "Cancel",
       "ok": "Ok",
-      "upload": "Upload"
+      "upload": "Upload",
+      "saveChange": "Save change"
     }
   },
   "menus": {
@@ -100,7 +125,8 @@
     "success": {
       "update": "Updated successfully!",
       "delete": "Deleted successfully!",
-      "create": "Updated successfully!"
+      "create": "Updated successfully!",
+      "changePasswordSuccess": "Change password successfully!"
     },
     "errors": {
       "100": "Username or Password is invalid",

@@ -3,8 +3,6 @@ import { UserDetail } from 'api/user/models/userDetail';
 import { FormPhone, FormGroup, FormText } from 'app/components/Form';
 import { FormSelectCountry } from 'app/components/Form/FormSelectCountry';
 import { buttonMessages } from 'app/messages';
-import { authenticateActions } from 'providers/auth/slice';
-import { selectCurrentUser } from 'providers/auth/slice/selectors';
 import { selectLoading } from 'providers/layout/slice/selectors';
 import React from 'react';
 import i18next from 'i18next';
@@ -14,6 +12,8 @@ import { BaseViewContainer } from './baseViewContainer';
 import { LeftForm } from './leftForm';
 import { RightForm } from './rightForm';
 import { useDispatch } from 'react-redux';
+import { selectCurrentUser } from '../../slice/selectors';
+import { userSettingActions } from '../../slice';
 
 export const BaseView: React.FC = () => {
   const { t } = i18next;
@@ -22,7 +22,7 @@ export const BaseView: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleFinish = async values => {
-    dispatch(authenticateActions.updateCurrentUser(values));
+    dispatch(userSettingActions.updateCurrentUser(values));
   };
   return (
     <BaseViewContainer>

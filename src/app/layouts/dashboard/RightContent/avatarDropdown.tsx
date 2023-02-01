@@ -13,7 +13,7 @@ import { selectDashboardSettings } from 'providers/layout/slice/selectors';
 import { useTranslation } from 'react-i18next';
 import { commonMessages } from 'app/messages';
 import { useNavigate } from 'react-router-dom';
-import { selectCurrentUser } from 'providers/auth/slice/selectors';
+import { selectCurrentUser } from 'app/pages/DashBoard/UserSettingPage/slice/selectors';
 
 export type GlobalHeaderRightProps = {};
 

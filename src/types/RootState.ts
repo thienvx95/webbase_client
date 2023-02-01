@@ -1,3 +1,4 @@
+import { UserSettingState } from 'app/pages/DashBoard/UserSettingPage/slice/types';
 import { AuthenticateState } from 'providers/auth/slice/types';
 import { AppLayoutState } from 'providers/layout/slice/types';
 
@@ -8,4 +9,5 @@ import { AppLayoutState } from 'providers/layout/slice/types';
 export interface RootState {
   appLayout?: AppLayoutState;
   auth: AuthenticateState;
+  userSetting: UserSettingState;
 }

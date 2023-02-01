@@ -1,12 +1,13 @@
 import { ResponseResult } from 'api/common/models';
 import { httpClient } from 'api/httpClient';
-import { UserDetail } from './models';
+import { ChangePasswordParams, UserDetail } from './models';
 import { UserInformation } from './models/userInformation';
 
 export const UserAPIPath = {
   getUserProfile: `/user/me`,
   updateUserProfile: `/user/changeProfile`,
   uploadAvatar: `/user/uploadAvatar`,
+  changePassword: `/user/changePassword`,
 };
 
 export const UserAPI = {
@@ -22,6 +23,11 @@ export const UserAPI = {
     user: UserDetail,
   ): Promise<ResponseResult<UserDetail>> {
     return await httpClient.post(UserAPIPath.updateUserProfile, user);
+  },
+  async changePassword(
+    data: ChangePasswordParams,
+  ): Promise<ResponseResult<boolean>> {
+    return await httpClient.post(UserAPIPath.changePassword, data);
   },
   async uploadAvatar(files: File[]): Promise<ResponseResult<boolean>> {
     return await httpClient.uploadFiles(

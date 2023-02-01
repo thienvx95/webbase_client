@@ -1,14 +1,13 @@
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { Upload, Button } from 'antd';
-import type { UploadChangeParam } from 'antd/es/upload';
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import type { RcFile, UploadProps } from 'antd/es/upload/interface';
 import { UserAPI } from 'api/user/userApi';
 import { Notification } from 'app/components/Notification';
 import { buttonMessages, formMessages } from 'app/messages';
-import { authenticateActions } from 'providers/auth/slice';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { userSettingActions } from '../../slice';
 
 export const AvatarView = ({ avatar }: { avatar: string }) => {
   const [loading, setLoading] = useState(false);
@@ -38,7 +37,7 @@ export const AvatarView = ({ avatar }: { avatar: string }) => {
     if (fileList.length) {
       const result = await UserAPI.uploadAvatar(fileList);
       if (result.success) {
-        dispatch(authenticateActions.fetchCurrentUser());
+        dispatch(userSettingActions.fetchCurrentUser());
         Notification.success('update');
       } else {
         Notification.error('200');

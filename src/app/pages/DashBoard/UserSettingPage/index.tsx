@@ -15,6 +15,12 @@ import {
   UserSettingContainer,
 } from './components';
 import { messages } from './messages';
+import {
+  BellOutlined,
+  SafetyCertificateOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import styled from 'styled-components';
 
 type SettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
 type SettingsState = {
@@ -22,6 +28,11 @@ type SettingsState = {
   selectKey: SettingsStateKeys;
 };
 
+const SettingTitle = styled.span`
+  .anticon {
+    margin-right: 5px;
+  }
+`;
 export const UserSettingPage = () => {
   const { t } = i18next;
   const [initConfig, setInitConfig] = useState<SettingsState>({
@@ -75,15 +86,30 @@ export const UserSettingPage = () => {
 
   const items: MenuItemType[] = [
     {
-      label: t(messages.baseSetting()),
+      label: (
+        <SettingTitle>
+          <UserOutlined />
+          {t(messages.personalInformation())}
+        </SettingTitle>
+      ),
       key: 'base',
     },
     {
-      label: t(messages.securitySetting()),
+      label: (
+        <SettingTitle>
+          <SafetyCertificateOutlined />
+          {t(messages.securitySetting())}
+        </SettingTitle>
+      ),
       key: 'security',
     },
     {
-      label: t(messages.notificationSetting()),
+      label: (
+        <SettingTitle>
+          <BellOutlined />
+          {t(messages.notificationSetting())}
+        </SettingTitle>
+      ),
       key: 'notification',
     },
   ];

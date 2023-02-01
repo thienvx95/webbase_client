@@ -1,5 +1,4 @@
 import { AuthParams } from 'api/auth/models';
-import { UserDetail } from 'api/user/models/userDetail';
 import { layoutActions } from 'providers/layout/slice';
 import React, { createContext, useMemo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,7 +12,6 @@ type AuthContextValue = {
   login: (data: AuthParams) => void;
   logout: () => void;
   removeLoginError: () => void;
-  updateCurrentUser: (user: UserDetail) => void;
 };
 
 export const AuthContext = createContext<AuthContextValue>({
@@ -21,7 +19,6 @@ export const AuthContext = createContext<AuthContextValue>({
   login: (data: AuthParams) => undefined,
   logout: () => undefined,
   removeLoginError: () => undefined,
-  updateCurrentUser: (user: UserDetail) => undefined,
 });
 
 export const AuthProvider = ({ children }) => {
@@ -65,20 +62,14 @@ export const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const updateCurrentUser = useCallback((user: UserDetail) => {
-    dispatch(actions.updateCurrentUser(user));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const value = useMemo(
     () => ({
       isAuthenticated,
       logout,
       login,
       removeLoginError,
-      updateCurrentUser,
     }),
-    [isAuthenticated, login, logout, removeLoginError, updateCurrentUser],
+    [isAuthenticated, login, logout, removeLoginError],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

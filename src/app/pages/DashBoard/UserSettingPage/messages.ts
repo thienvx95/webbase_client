@@ -2,8 +2,10 @@ import { translations } from 'locales/translations';
 import { _t } from 'utils/messages';
 
 export const messages = {
-  baseSetting: () => _t(translations.pages.userSetting.baseSetting),
-  securitySetting: () => _t(translations.pages.userSetting.securitySetting),
+  personalInformation: () =>
+    _t(translations.pages.userSetting.personalInformation),
+  securitySetting: () =>
+    _t(translations.pages.userSetting.securitySetting.title),
   notificationSetting: () =>
     _t(translations.pages.userSetting.notificationSetting),
 };

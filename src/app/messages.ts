@@ -28,4 +28,5 @@ export const buttonMessages = {
   cancel: () => _t(translations.form.button.cancel),
   ok: () => _t(translations.form.button.ok),
   upload: () => _t(translations.form.button.upload),
+  saveChange: () => _t(translations.form.button.saveChange),
 };
