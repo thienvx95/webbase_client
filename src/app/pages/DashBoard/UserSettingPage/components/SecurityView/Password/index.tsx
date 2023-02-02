@@ -9,6 +9,10 @@ import { ViewHeader } from '../component/viewHeader';
 import { buttonMessages, formMessages } from 'app/messages';
 import { LockOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { userSettingActions } from '../../../slice';
+import { useSelector } from 'react-redux';
+import { selectLoading } from 'providers/layout/slice/selectors';
 
 const { Panel } = Collapse;
 
@@ -31,7 +35,8 @@ const PasswordStrength = styled.span`
 `;
 export const ChangePasswordView: React.FC = () => {
   const { t } = useTranslation();
-  const [submitting, setSubmitting] = useState(false);
+  const dispatch = useDispatch();
+  const loading = useSelector(selectLoading);
   const [disableButton, setDisableButton] = useState(true);
   const [passStrength, setPassStrength] = useState(null);
 
@@ -47,19 +52,7 @@ export const ChangePasswordView: React.FC = () => {
   }, []);
 
   const handleSubmit = async (data: ChangePasswordParams): Promise<void> => {
-    setSubmitting(true);
-
-    // try {
-    //   const result = await mySettingServices.changePassword(data);
-    //   if (result.success) {
-    //     LocalStorageUtil.remove(CacheKey.WebApiToken);
-    //     LocalStorageUtil.remove(CacheKey.WebApiRefreshhToken);
-    //     message.success(intl.formatMessage({ id: 'pages.settings.security.change-password-success' }));
-    //     history.push(LoginUrl);
-    //   }
-    // } catch (err) {
-    //   setSubmitting(false);
-    // }
+    dispatch(userSettingActions.changePassword(data));
   };
 
   const onValuesChange = (changeValues: any) => {
@@ -98,7 +91,7 @@ export const ChangePasswordView: React.FC = () => {
             },
             render: (_, dom) => dom.pop(),
             submitButtonProps: {
-              loading: submitting,
+              loading: loading,
               disabled: disableButton,
             },
           }}

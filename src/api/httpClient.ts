@@ -4,6 +4,7 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
+  InternalAxiosRequestConfig,
 } from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
@@ -82,8 +83,8 @@ class HttpClient implements IHttpClient {
   };
 
   private requestInterceptors = (
-    config: AxiosRequestConfig,
-  ): AxiosRequestConfig => {
+    config: InternalAxiosRequestConfig,
+  ): InternalAxiosRequestConfig => {
     try {
       if (LocalStorageUtil.hasValue(CacheKey.WebApiToken) && config.headers) {
         config.headers[

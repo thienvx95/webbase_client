@@ -126,10 +126,11 @@
       "update": "Updated successfully!",
       "delete": "Deleted successfully!",
       "create": "Updated successfully!",
-      "changePasswordSuccess": "Change password successfully!"
+      "changePassword": "Change password successfully!"
     },
     "errors": {
       "100": "Username or Password is invalid",
+      "150": "Current password not match",
       "200": "Upload failed!",
       "210": "Updated failed!",
       "220": "Created failed!",

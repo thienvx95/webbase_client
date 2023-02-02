@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ResponseResult } from 'api/common/models';
-import { UserDetail } from 'api/user/models';
+import { ChangePasswordParams, UserDetail } from 'api/user/models';
 import { UserInformation } from 'api/user/models/userInformation';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
@@ -28,6 +28,7 @@ const slice = createSlice({
       state.userInformation = action.payload;
     },
     updateCurrentUser(state, action: PayloadAction<UserDetail>) {},
+    changePassword(state, action: PayloadAction<ChangePasswordParams>) {},
   },
 });
 
