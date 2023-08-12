@@ -1,9 +1,8 @@
 import Footer from 'app/components/Footer';
-import { GoogleOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import {
   LoginForm,
   PageLoading,
-  ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
 import React, { useEffect, useState } from 'react';
@@ -17,22 +16,28 @@ import {
   LoginMessage,
   LoginContainer,
   LoginFormContainer,
-  LoginTopHeaderContainer,
-  LoginSupporterContainer,
+  LoginSupporter,
+  LoginTopHeader,
 } from './components';
-import { LanguageSwitch } from 'app/components/LanguageSwitch';
-import { ThemeSwitch } from 'app/components/ThemeSwitch';
-import { ForgotPassword } from './components/forgotPassword';
 import { AuthParams } from 'api/auth/models';
 import { useAuth } from 'utils/hooks/useAuth';
 import { selectLoading } from 'providers/layout/slice/selectors';
+import { useSettings } from 'utils/hooks/useSettings';
+import { PageSettingEnum } from 'api/setting/models/pageSettingEnum';
+import { selectLoginSettings } from 'providers/settings/slice/selectors';
+import { loginExternalRender } from './externalAuth/loginExternal';
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
   const { login, removeLoginError } = useAuth();
+  const { fetchPageSetting } = useSettings();
   const [buttonLoading, setButtonLoading] = useState(false);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const loginSettings = useSelector(selectLoginSettings);
+  useEffect(() => {
+    fetchPageSetting(PageSettingEnum.Login);
+  }, []);
 
   useEffect(() => {
     setButtonLoading(false);
@@ -43,10 +48,7 @@ export const LoginPage: React.FC = () => {
       <Helmet>
         <title>{t(commonMessages.loginMenu())}</title>
       </Helmet>
-      <LoginTopHeaderContainer>
-        <ThemeSwitch />
-        <LanguageSwitch />
-      </LoginTopHeaderContainer>
+      <LoginTopHeader />
       <LoginFormContainer>
         <LoginForm
           submitter={{
@@ -63,10 +65,11 @@ export const LoginPage: React.FC = () => {
           initialValues={{
             autoLogin: true,
           }}
-          actions={[
-            <span key="loginWith">{t(messages.loginWith())}:</span>,
-            <GoogleOutlined key="GoogleOutlined" className="icon" />,
-          ]}
+          actions={
+            loginSettings
+              ? loginExternalRender({ settings: loginSettings })
+              : []
+          }
           onFinish={async values => {
             setButtonLoading(true);
             await login(values as AuthParams);
@@ -110,12 +113,7 @@ export const LoginPage: React.FC = () => {
               },
             ]}
           />
-          <LoginSupporterContainer>
-            <ProFormCheckbox noStyle name="autoLogin">
-              {t(messages.rememberMe())}
-            </ProFormCheckbox>
-            <ForgotPassword href="#" onClick={() => {}} />
-          </LoginSupporterContainer>
+          {loginSettings ? <LoginSupporter settings={loginSettings} /> : null}
         </LoginForm>
       </LoginFormContainer>
       <Footer />

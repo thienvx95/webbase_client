@@ -6,13 +6,13 @@ import { ProSettings } from '@ant-design/pro-layout';
 import { ResponseResult } from 'api/common/models';
 import { MenuResult } from 'api/common/models/menuResult';
 import { layoutSaga } from './saga';
-import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
+import { CacheKey, StorageUtil } from 'utils/storageUtil';
 
 export const initialState: AppLayoutState = {
-  theme: LocalStorageUtil.get<ThemeKeyType>(CacheKey.Theme) ?? 'light',
+  theme: StorageUtil.get<ThemeKeyType>(CacheKey.Theme) ?? 'light',
   loading: false,
   settings:
-    LocalStorageUtil.get<ThemeKeyType>(CacheKey.Theme) === 'dark'
+    StorageUtil.get<ThemeKeyType>(CacheKey.Theme) === 'dark'
       ? {
           colorPrimary: '#1677FF',
           contentWidth: 'Fluid',

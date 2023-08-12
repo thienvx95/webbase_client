@@ -3,7 +3,11 @@ export interface UserInformation {
   continent: string;
   country: string;
   countryCode: string;
-  query: string[];
+  isp: string;
+  lat: string;
+  lon: string;
+  org: string;
+  query: string;
   region: string;
   timezone: string;
   utcOffset: string;

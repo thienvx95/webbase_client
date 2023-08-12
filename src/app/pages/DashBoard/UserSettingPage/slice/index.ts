@@ -1,6 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ResponseResult } from 'api/common/models';
-import { ChangePasswordParams, UserDetail } from 'api/user/models';
+import { PaginateResult } from 'api/common/models/paginateResult';
+import {
+  ChangePasswordParams,
+  UserDetail,
+  UserLoginActivity,
+} from 'api/user/models';
 import { UserInformation } from 'api/user/models/userInformation';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
@@ -9,7 +14,8 @@ import { UserSettingState } from './types';
 
 export const initialState: UserSettingState = {
   user: null,
-  userInformation: null,
+  userIpLookup: null,
+  userLoginActivity: null,
 };
 
 const slice = createSlice({
@@ -23,12 +29,19 @@ const slice = createSlice({
     ) {
       state.user = action.payload.data;
     },
-    fetchUserInformation(state) {},
-    fetchUserInformationSuccess(state, action: PayloadAction<UserInformation>) {
-      state.userInformation = action.payload;
+    fetchUserIpLookup(state) {},
+    fetchUserIpLookupSuccess(state, action: PayloadAction<UserInformation>) {
+      state.userIpLookup = action.payload;
     },
     updateCurrentUser(state, action: PayloadAction<UserDetail>) {},
     changePassword(state, action: PayloadAction<ChangePasswordParams>) {},
+    fetchCurrentUserLoginActivities(state) {},
+    fetchCurrentUserLoginActivitiesSuccess(
+      state,
+      action: PayloadAction<ResponseResult<PaginateResult<UserLoginActivity>>>,
+    ) {
+      state.userLoginActivity = action.payload.data;
+    },
   },
 });
 

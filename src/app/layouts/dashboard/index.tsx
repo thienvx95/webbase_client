@@ -19,6 +19,15 @@ import RightContent from './RightContent';
 import isEqual from 'lodash/isEqual';
 import { useRequest } from 'utils/hooks/useRequest';
 import { useUserSettingSlice } from 'app/pages/DashBoard/UserSettingPage/slice';
+import { ConfigProvider } from 'antd';
+import enGb from 'antd/lib/locale/en_GB';
+import viVn from 'antd/lib/locale/vi_VN';
+import { useTranslation } from 'react-i18next';
+const intlMap = {
+  en: enGb,
+  vi: viVn,
+};
+
 const ProLayoutContainer = styled.div`
   .ant-pro-layout-container {
     min-height: 100vh !important;
@@ -26,6 +35,8 @@ const ProLayoutContainer = styled.div`
 `;
 
 export const DashboardLayout = () => {
+  const { i18n } = useTranslation();
+
   const { actions } = useUserSettingSlice();
   const dispatch = useDispatch();
   const outlet = useOutlet();
@@ -56,29 +67,31 @@ export const DashboardLayout = () => {
   }
 
   return (
-    <ProLayoutContainer id="dashboard-container">
-      <ProLayout
-        logo={<img alt="logo" src="/logo.png" />}
-        title={'Web Application'}
-        footerRender={() => <Footer />}
-        rightContentRender={() => <RightContent />}
-        isMobile={true}
-        menu={{
-          request: async () => menus,
-        }}
-        {...settings}
-      >
-        {outlet}
-      </ProLayout>
-      <SettingDrawer
-        enableDarkTheme
-        getContainer={() => document.getElementById('dashboard-container')}
-        settings={settings}
-        onSettingChange={onSettingChange}
-        disableUrlParams={true}
-        hideCopyButton={true}
-        hideHintAlert={true}
-      />
-    </ProLayoutContainer>
+    <ConfigProvider locale={intlMap[i18n.language]}>
+      <ProLayoutContainer id="dashboard-container">
+        <ProLayout
+          logo={<img alt="logo" src="/logo.png" />}
+          title={'Web Application'}
+          footerRender={() => <Footer />}
+          rightContentRender={() => <RightContent />}
+          isMobile={true}
+          menu={{
+            request: async () => menus,
+          }}
+          {...settings}
+        >
+          {outlet}
+        </ProLayout>
+        <SettingDrawer
+          enableDarkTheme
+          getContainer={() => document.getElementById('dashboard-container')}
+          settings={settings}
+          onSettingChange={onSettingChange}
+          disableUrlParams={true}
+          hideCopyButton={true}
+          hideHintAlert={true}
+        />
+      </ProLayoutContainer>
+    </ConfigProvider>
   );
 };

@@ -10,7 +10,7 @@ import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 import { isEmpty } from 'lodash';
 import { BaseAPI, ErrorCode } from 'utils/constants';
-import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
+import { CacheKey, StorageUtil } from 'utils/storageUtil';
 import { AuthAPIPath } from './auth/authApi';
 import { AuthResult } from './auth/models';
 import { ResponseResult } from './common/models';
@@ -65,14 +65,12 @@ class HttpClient implements IHttpClient {
   }
 
   private refreshAuthLogic = failedRequest => {
-    const refreshToken = LocalStorageUtil.get<string>(
-      CacheKey.WebApiRefreshhToken,
-    );
+    const refreshToken = StorageUtil.get<string>(CacheKey.WebApiRefreshhToken);
     if (!isEmpty(refreshToken)) {
       axios.post(AuthAPIPath.RefreshToken, {}).then(tokenRefreshResponse => {
         const { token, refreshToken } = tokenRefreshResponse.data as AuthResult;
-        LocalStorageUtil.set(CacheKey.WebApiToken, token);
-        LocalStorageUtil.set(CacheKey.WebApiRefreshhToken, refreshToken);
+        StorageUtil.set(CacheKey.WebApiToken, token);
+        StorageUtil.set(CacheKey.WebApiRefreshhToken, refreshToken);
 
         failedRequest.response.config.headers['Authorization'] =
           'Bearer ' + token;
@@ -86,10 +84,10 @@ class HttpClient implements IHttpClient {
     config: InternalAxiosRequestConfig,
   ): InternalAxiosRequestConfig => {
     try {
-      if (LocalStorageUtil.hasValue(CacheKey.WebApiToken) && config.headers) {
-        config.headers[
-          'Authorization'
-        ] = `Bearer ${LocalStorageUtil.get<string>(CacheKey.WebApiToken)}`;
+      if (StorageUtil.hasValue(CacheKey.WebApiToken) && config.headers) {
+        config.headers['Authorization'] = `Bearer ${StorageUtil.get<string>(
+          CacheKey.WebApiToken,
+        )}`;
       }
       return config;
     } catch (error: any) {
@@ -104,16 +102,18 @@ class HttpClient implements IHttpClient {
     if (error.response?.status === StatusCode.TooManyRequests) {
       var rateLimitRest = error.response.headers['RateLimit-Reset'];
       Notification.error(ErrorCode.TooManyRequest, [`${rateLimitRest}`]);
+      Promise.reject(error);
     }
     if (error.response?.status === StatusCode.NotFound) {
       Notification.error(ErrorCode.UnknownError);
+      Promise.reject(error);
     }
 
     if (error.response?.status === StatusCode.BadRequest) {
       const data = error.response.data as ResponseResult<boolean>;
       Notification.error(data.code);
+      Promise.reject(error);
     }
-    Promise.reject(error);
   };
 
   request<T = any, R = AxiosResponse<T>>(

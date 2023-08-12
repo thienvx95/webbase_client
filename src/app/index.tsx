@@ -22,6 +22,7 @@ import { AuthProvider } from 'providers/auth/authProvider';
 import { HomeRoute } from 'app/layouts/homeLayout';
 import { ProtectedRoute } from 'app/layouts/protectedLayout';
 import { LoginRoute } from './layouts/loginLayout';
+import { SettingProvider } from 'providers/settings/settingProvider';
 
 export let globalNavigate: NavigateFunction;
 
@@ -41,13 +42,15 @@ export function App() {
       >
         <meta name="description" content="Web application" />
       </Helmet>
-      <AuthProvider>
-        <Routes>
-          {HomeRoute()}
-          {LoginRoute()}
-          {ProtectedRoute()}
-        </Routes>
-      </AuthProvider>
+      <SettingProvider>
+        <AuthProvider>
+          <Routes>
+            {HomeRoute()}
+            {LoginRoute()}
+            {ProtectedRoute()}
+          </Routes>
+        </AuthProvider>
+      </SettingProvider>
       <GlobalStyle />
     </BrowserRouter>
   );

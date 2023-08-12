@@ -8,4 +8,26 @@ export const messages = {
     _t(
       translations.pages.userSetting.securitySetting.loginActivity.description,
     ),
+  currentLocation: () =>
+    _t(
+      translations.pages.userSetting.securitySetting.loginActivity
+        .currentLocation,
+    ),
+  city: () =>
+    _t(translations.pages.userSetting.securitySetting.loginActivity.city),
+  continent: () =>
+    _t(translations.pages.userSetting.securitySetting.loginActivity.continent),
+  country: () =>
+    _t(translations.pages.userSetting.securitySetting.loginActivity.country),
+  countryCode: () =>
+    _t(
+      translations.pages.userSetting.securitySetting.loginActivity.countryCode,
+    ),
+  isp: () =>
+    _t(translations.pages.userSetting.securitySetting.loginActivity.isp),
+  org: () =>
+    _t(translations.pages.userSetting.securitySetting.loginActivity.org),
+  ip: () => _t(translations.pages.userSetting.securitySetting.loginActivity.ip),
+  Region: () =>
+    _t(translations.pages.userSetting.securitySetting.loginActivity.region),
 };

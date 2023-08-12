@@ -9,6 +9,7 @@ module.exports = {
   extends: ['react-app', 'prettier'],
   plugins: ['prettier'],
   rules: {
+    'react-hooks/exhaustive-deps': 'off',
     'prettier/prettier': ['error', prettierOptions],
   },
   overrides: [

@@ -13,7 +13,12 @@ export const selectCurrentUser = createSelector(
   state => state.user,
 );
 
-export const selectUserInformation = createSelector(
+export const selectUserIpLookup = createSelector(
   [selectDomain],
-  state => state.userInformation,
+  state => state.userIpLookup,
+);
+
+export const selectCurrentUserLoginActivity = createSelector(
+  [selectDomain],
+  state => state.userLoginActivity,
 );

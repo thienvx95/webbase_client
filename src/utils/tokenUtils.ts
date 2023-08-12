@@ -1,5 +1,5 @@
 import decode, { JwtPayload } from 'jwt-decode';
-import { CacheKey, LocalStorageUtil } from './localStorageUtil';
+import { CacheKey, StorageUtil } from './storageUtil';
 import { isEmpty } from 'lodash';
 import { UserDetail } from 'api/user/models';
 
@@ -10,10 +10,8 @@ interface ITokenUtil {
 
 export const TokenUtil: ITokenUtil = {
   isAuthenticated: (): boolean => {
-    const token = LocalStorageUtil.get<string>(CacheKey.WebApiToken);
-    const refreshToken = LocalStorageUtil.get<string>(
-      CacheKey.WebApiRefreshhToken,
-    );
+    const token = StorageUtil.get<string>(CacheKey.WebApiToken);
+    const refreshToken = StorageUtil.get<string>(CacheKey.WebApiRefreshhToken);
     if (isEmpty(token) || isEmpty(refreshToken)) return false;
 
     try {
@@ -27,7 +25,7 @@ export const TokenUtil: ITokenUtil = {
     return true;
   },
   getCurentUserProfile: (): UserDetail | null => {
-    const token = LocalStorageUtil.get<string>(CacheKey.WebApiToken);
+    const token = StorageUtil.get<string>(CacheKey.WebApiToken);
     if (isEmpty(token)) return null;
     try {
       return decode(token) as UserDetail;

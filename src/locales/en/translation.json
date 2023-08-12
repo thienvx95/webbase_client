@@ -30,6 +30,9 @@
     },
     "userSetting": {
       "personalInformation": "Personal information",
+      "preferenceSetting": {
+        "title": "Preference"
+      },
       "securitySetting": {
         "title": "Security",
         "loginSecurity": "Login Security",
@@ -44,7 +47,16 @@
         },
         "loginActivity": {
           "title": "Login Activity",
-          "description": "Where You're Logged In"
+          "description": "Where You're Logged In",
+          "currentLocation": "Current location",
+          "city": "City",
+          "continent": "Continent",
+          "country": "Country",
+          "countryCode": "Country code",
+          "isp": "Isp",
+          "org": "Organization",
+          "ip": "IP",
+          "region": "Region"
         }
       },
       "notificationSetting": "Notification"
@@ -88,13 +100,38 @@
       "newPassword": "New password cannot be the same as current!",
       "confirmPassword": "The two passwords that you entered do not match!"
     },
-    "placeholder": {},
-    "button": {
-      "submit": "Submit",
-      "cancel": "Cancel",
-      "ok": "Ok",
-      "upload": "Upload",
-      "saveChange": "Save change"
+    "placeholder": {}
+  },
+  "button": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "upload": "Upload",
+    "saveChange": "Save change",
+    "delete": "Delete",
+    "deleteAll": "Delete All",
+    "edit": "Edit",
+    "new": "New",
+    "logoutAllLocation": "Log out All Locations"
+  },
+  "modal": {
+    "deleteConfirm": {
+      "title": "Delete Confirm",
+      "description": "Are you sure to delete this record?"
+    },
+    "deleteAllConfirm": {
+      "title": "Delete All Confirm",
+      "description": "Are you sure to delete all records?"
+    }
+  },
+  "table": {
+    "action": "Action",
+    "userActivities": {
+      "browser": "Browser",
+      "ipAddress": "IP address",
+      "loginTime": "Login time",
+      "platform": "Platform",
+      "os": "Os"
     }
   },
   "menus": {
@@ -126,7 +163,8 @@
       "update": "Updated successfully!",
       "delete": "Deleted successfully!",
       "create": "Updated successfully!",
-      "changePassword": "Change password successfully!"
+      "changePassword": "Change password successfully!",
+      "login": "Login Sucessfully!"
     },
     "errors": {
       "100": "Username or Password is invalid",
@@ -139,7 +177,8 @@
       "9999": "Unknown error",
       "ERR_NETWORK": "Network Error",
       "LimitFileUpload": "You can only upload {0} file!",
-      "LimitFileSizeUpload": "{0} must smaller than {1}!"
+      "LimitFileSizeUpload": "{0} must smaller than {1}!",
+      "login": "Login Error!"
     },
     "warning": {}
   }

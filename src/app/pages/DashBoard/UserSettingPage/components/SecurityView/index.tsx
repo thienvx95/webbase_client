@@ -4,6 +4,7 @@ import { ChangePasswordView } from './Password';
 import { useTranslation } from 'react-i18next';
 import { messages } from './Password/messages';
 import LoginActivityView from './LoginActivity';
+import { LogoutAllLocationButton } from './component/logoutAllLocationButton';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
 
@@ -17,6 +18,10 @@ export const SecurityView: React.FC = () => {
     {
       title: '',
       description: <LoginActivityView />,
+    },
+    {
+      title: '',
+      description: <LogoutAllLocationButton />,
     },
   ];
 

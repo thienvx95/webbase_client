@@ -1,4 +1,4 @@
-import { PageLoading, ProForm, ProFormText } from '@ant-design/pro-components';
+import { ProForm, ProFormText } from '@ant-design/pro-components';
 import { UserDetail } from 'api/user/models/userDetail';
 import { FormPhone, FormGroup, FormText } from 'app/components/Form';
 import { FormSelectCountry } from 'app/components/Form/FormSelectCountry';

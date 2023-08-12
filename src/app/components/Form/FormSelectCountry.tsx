@@ -35,6 +35,7 @@ export const FormSelectCountry = (
       return;
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { fetchError } = layoutActions;
   const dispatch = useDispatch();

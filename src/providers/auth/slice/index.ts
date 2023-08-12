@@ -2,15 +2,15 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { AuthResult, RefreshTokenParam } from 'api/auth/models';
 import { ResponseResult } from 'api/common/models';
 import { createSlice } from 'utils/@reduxjs/toolkit';
-import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
+import { CacheKey, StorageUtil } from 'utils/storageUtil';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { authenticateSaga } from './saga';
 import { AuthenticateState } from './types';
 
 export const initialState: AuthenticateState = {
   error: null,
-  token: LocalStorageUtil.get<string>(CacheKey.WebApiToken),
-  refreshToken: LocalStorageUtil.get<string>(CacheKey.WebApiRefreshhToken),
+  token: StorageUtil.get<string>(CacheKey.WebApiToken),
+  refreshToken: StorageUtil.get<string>(CacheKey.WebApiRefreshhToken),
 };
 
 const slice = createSlice({
@@ -29,16 +29,21 @@ const slice = createSlice({
       state.error = null;
       state.token = action.payload.data.token ?? '';
       state.refreshToken = action.payload.data.refreshToken ?? '';
-      LocalStorageUtil.set(CacheKey.WebApiToken, action.payload.data.token);
-      LocalStorageUtil.set(
+      StorageUtil.set(
+        CacheKey.WebApiToken,
+        action.payload.data.token,
+        action.payload.data.remmember,
+      );
+      StorageUtil.set(
         CacheKey.WebApiRefreshhToken,
         action.payload.data.refreshToken,
+        action.payload.data.remmember,
       );
     },
     refreshToken(state, action: PayloadAction<RefreshTokenParam>) {},
     refreshError(state) {
-      LocalStorageUtil.remove(CacheKey.WebApiToken);
-      LocalStorageUtil.remove(CacheKey.WebApiRefreshhToken);
+      StorageUtil.remove(CacheKey.WebApiToken);
+      StorageUtil.remove(CacheKey.WebApiRefreshhToken);
     },
     removeError(state) {
       state.error = null;

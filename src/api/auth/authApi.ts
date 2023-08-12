@@ -6,6 +6,7 @@ export const AuthAPIPath = {
   Login: `/auth/`,
   LoginWithGoogle: `/auth/google`,
   RefreshToken: `/auth/refreshToken`,
+  GetGoogleClientId: `/auth/getGoogleClientId`,
 };
 
 export const AuthAPI = {
@@ -19,5 +20,8 @@ export const AuthAPI = {
   },
   async refreshToken(token: string): Promise<ResponseResult<AuthResult>> {
     return await httpClient.post(AuthAPIPath.RefreshToken, token);
+  },
+  async getGooogleClientId(): Promise<ResponseResult<string>> {
+    return await httpClient.get(AuthAPIPath.GetGoogleClientId);
   },
 };

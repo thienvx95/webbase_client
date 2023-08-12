@@ -4,4 +4,5 @@ export interface AuthResult {
   token?: string;
   refreshToken?: string;
   currentAuthority?: string;
+  remmember?: boolean | undefined;
 }

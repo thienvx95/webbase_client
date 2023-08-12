@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Collapse } from 'antd';
+import React from 'react';
+import { Card, Collapse, Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { ViewHeader } from '../component/viewHeader';
 import { messages } from './messages';
@@ -7,23 +7,34 @@ import { EnvironmentOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { userSettingActions } from '../../../slice';
 import { useSelector } from 'react-redux';
-import { selectUserInformation } from '../../../slice/selectors';
+import {
+  selectCurrentUserLoginActivity,
+  selectUserIpLookup,
+} from '../../../slice/selectors';
+import { isEmpty } from 'lodash';
+import { CurrentLocation } from './currentLocation';
+import { CurrentUserLoginActivities } from './currentUserLoginActivities';
 
 const { Panel } = Collapse;
 
 export const LoginActivityView: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const userInformation = useSelector(selectUserInformation);
-  useEffect(() => {
-    if (!userInformation) {
-      dispatch(userSettingActions.fetchUserInformation());
-    }
-  }, []);
+  const userIpLookup = useSelector(selectUserIpLookup);
+  const userLoginActivity = useSelector(selectCurrentUserLoginActivity);
 
-  console.log('🚀 ~ file: index.tsx:18 ~ userInformation', userInformation);
+  const onCollapse = (key: string | Array<string>): void => {
+    if (!isEmpty(key)) {
+      if (!userIpLookup) {
+        dispatch(userSettingActions.fetchUserIpLookup());
+      }
+      if (!userLoginActivity) {
+        dispatch(userSettingActions.fetchCurrentUserLoginActivities());
+      }
+    }
+  };
   return (
-    <Collapse expandIconPosition="right">
+    <Collapse expandIconPosition="end" onChange={onCollapse}>
       <Panel
         header={
           <ViewHeader
@@ -33,7 +44,13 @@ export const LoginActivityView: React.FC = () => {
           />
         }
         key="loginActivity"
-      ></Panel>
+      >
+        <Card bordered={false}>
+          <CurrentLocation />
+          <Divider style={{ marginBottom: 32 }} />
+          <CurrentUserLoginActivities />
+        </Card>
+      </Panel>
     </Collapse>
   );
 };

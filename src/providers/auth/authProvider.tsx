@@ -3,7 +3,7 @@ import { layoutActions } from 'providers/layout/slice';
 import React, { createContext, useMemo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
+import { CacheKey, StorageUtil } from 'utils/storageUtil';
 import { TokenUtil } from 'utils/tokenUtils';
 import { useAuthenticateSlice } from './slice';
 
@@ -32,8 +32,8 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(data => dispatch(actions.login(data)), []);
 
   const logout = useCallback(() => {
-    LocalStorageUtil.remove(CacheKey.WebApiToken);
-    LocalStorageUtil.remove(CacheKey.WebApiRefreshhToken);
+    StorageUtil.remove(CacheKey.WebApiToken);
+    StorageUtil.remove(CacheKey.WebApiRefreshhToken);
     navigate('/', { replace: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = useCallback(() => {
     var isAuthenticated = TokenUtil.isAuthenticated();
     if (!isAuthenticated) {
-      const refreshToken = LocalStorageUtil.get<string>(
+      const refreshToken = StorageUtil.get<string>(
         CacheKey.WebApiRefreshhToken,
       );
       if (refreshToken) {

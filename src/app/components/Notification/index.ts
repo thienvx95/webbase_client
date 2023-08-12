@@ -19,7 +19,6 @@ export const Notification: INotification = {
     });
   },
   error: (key: string, values?: string[], isTranlation = true): void => {
-    console.log('🚀 ~ file: index.ts:22 ~ key', key);
     notification.error({
       message: getMessage(key, 'error', values, isTranlation),
     });

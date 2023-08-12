@@ -1,7 +1,7 @@
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { Upload, Button } from 'antd';
 import type { RcFile, UploadProps } from 'antd/es/upload/interface';
-import { UserAPI } from 'api/user/userApi';
+import { UserProfileAPI } from 'api/user/userProfileApi';
 import { Notification } from 'app/components/Notification';
 import { buttonMessages, formMessages } from 'app/messages';
 import React, { useState } from 'react';
@@ -35,7 +35,7 @@ export const AvatarView = ({ avatar }: { avatar: string }) => {
 
   const handleChange: UploadProps['onChange'] = async () => {
     if (fileList.length) {
-      const result = await UserAPI.uploadAvatar(fileList);
+      const result = await UserProfileAPI.uploadAvatar(fileList);
       if (result.success) {
         dispatch(userSettingActions.fetchCurrentUser());
         Notification.success('update');

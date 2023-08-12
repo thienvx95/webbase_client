@@ -2,17 +2,18 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { call, put, takeLatest, delay } from 'redux-saga/effects';
 import { userSettingActions as actions } from '.';
 import { ErrorCode, RoutingPath } from 'utils/constants';
-import { UserAPI } from 'api/user/userApi';
 import { ChangePasswordParams, UserDetail } from 'api/user/models';
 import { layoutActions } from 'providers/layout/slice';
 import { Notification } from 'app/components/Notification';
-import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
+import { CacheKey, StorageUtil } from 'utils/storageUtil';
 import { globalNavigate } from 'app';
+import { PaginateParams } from 'api/common/models/paginateParams';
+import { UserProfileAPI } from 'api/user/userProfileApi';
 
 export function* fetchCurrentUserSaga() {
   yield delay(500);
   try {
-    const result = yield call(UserAPI.getUserProfile);
+    const result = yield call(UserProfileAPI.getUserProfile);
     if (result.success) {
       yield put(actions.fetchCurrentUserSuccess(result));
     }
@@ -21,14 +22,28 @@ export function* fetchCurrentUserSaga() {
   }
 }
 
-export function* fetchUserInformationSaga() {
+export function* fetchUserIpLookupSaga() {
   yield delay(500);
   try {
-    const result = yield call(UserAPI.getCurrentIpLookup);
-    if (result.success) {
-      yield put(actions.fetchUserInformationSuccess(result));
-      return;
-    }
+    const result = yield call(UserProfileAPI.getCurrentIpLookup);
+    yield put(actions.fetchUserIpLookupSuccess(result));
+    return;
+  } catch (err: any) {
+    Notification.error(ErrorCode.UnknownError);
+  }
+}
+
+export function* fetchCurrentUserLoginActivitiesSaga(
+  data: PayloadAction<PaginateParams>,
+) {
+  yield delay(500);
+  try {
+    const result = yield call(
+      UserProfileAPI.getCurrentUserLoginActivities,
+      data.payload,
+    );
+    yield put(actions.fetchCurrentUserLoginActivitiesSuccess(result));
+    return;
   } catch (err: any) {
     Notification.error(ErrorCode.UnknownError);
   }
@@ -38,7 +53,7 @@ export function* updateCurentUserSaga(data: PayloadAction<UserDetail>) {
   yield put(layoutActions.toggleLoading(true));
   yield delay(500);
   try {
-    const result = yield call(UserAPI.updateUserProfile, data.payload);
+    const result = yield call(UserProfileAPI.updateUserProfile, data.payload);
     if (result.success) {
       yield put(actions.fetchCurrentUser());
       Notification.success('update');
@@ -57,11 +72,11 @@ export function* changePasswordSaga(data: PayloadAction<ChangePasswordParams>) {
   yield put(layoutActions.toggleLoading(true));
   yield delay(500);
   try {
-    const result = yield call(UserAPI.changePassword, data.payload);
+    const result = yield call(UserProfileAPI.changePassword, data.payload);
     if (result.success) {
       yield put(actions.fetchCurrentUser());
-      LocalStorageUtil.remove(CacheKey.WebApiRefreshhToken);
-      LocalStorageUtil.remove(CacheKey.WebApiToken);
+      StorageUtil.remove(CacheKey.WebApiRefreshhToken);
+      StorageUtil.remove(CacheKey.WebApiToken);
       Notification.success('changePassword');
       globalNavigate(RoutingPath.Login, { replace: true });
       return;
@@ -80,7 +95,11 @@ export function* changePasswordSaga(data: PayloadAction<ChangePasswordParams>) {
  */
 export function* authenticateSaga() {
   yield takeLatest(actions.fetchCurrentUser.type, fetchCurrentUserSaga);
-  yield takeLatest(actions.fetchUserInformation.type, fetchUserInformationSaga);
+  yield takeLatest(actions.fetchUserIpLookup.type, fetchUserIpLookupSaga);
   yield takeLatest(actions.updateCurrentUser.type, updateCurentUserSaga);
   yield takeLatest(actions.changePassword.type, changePasswordSaga);
+  yield takeLatest(
+    actions.fetchCurrentUserLoginActivities.type,
+    fetchCurrentUserLoginActivitiesSaga,
+  );
 }

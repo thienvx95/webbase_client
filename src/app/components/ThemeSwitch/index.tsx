@@ -8,7 +8,7 @@ import { MenuInfo } from 'rc-menu/lib/interface';
 import { useTranslation } from 'react-i18next';
 import { messages } from './messages';
 import { useMemo } from 'react';
-import { CacheKey, LocalStorageUtil } from 'utils/localStorageUtil';
+import { CacheKey, StorageUtil } from 'utils/storageUtil';
 
 interface ThemeSwitchProps {
   globalIconClassName?: string;
@@ -44,7 +44,7 @@ export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
 
   const changeTheme = ({ key }: MenuInfo): void => {
     const value = key as ThemeKeyType;
-    LocalStorageUtil.set(CacheKey.Theme, value);
+    StorageUtil.set(CacheKey.Theme, value);
     dispatch(layoutActions.changeTheme(value));
     setThemeSelected(value);
   };

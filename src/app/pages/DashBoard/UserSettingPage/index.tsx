@@ -10,6 +10,7 @@ import {
   BaseView,
   LeftMenu,
   NotificationView,
+  PreferenceView,
   RightMenu,
   SecurityView,
   UserSettingContainer,
@@ -18,11 +19,12 @@ import { messages } from './messages';
 import {
   BellOutlined,
   SafetyCertificateOutlined,
+  SettingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import styled from 'styled-components';
 
-type SettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
+type SettingsStateKeys = 'base' | 'security' | 'preference' | 'notification';
 type SettingsState = {
   mode: 'inline' | 'horizontal';
   selectKey: SettingsStateKeys;
@@ -48,6 +50,7 @@ export const UserSettingPage = () => {
     return () => {
       window.removeEventListener('resize', resize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const resize = useCallback(() => {
@@ -68,13 +71,15 @@ export const UserSettingPage = () => {
         setInitConfig({ ...initConfig, mode: mode as SettingsState['mode'] });
       }
     });
-  }, []);
+  }, [initConfig]);
 
   const renderChildren = React.useMemo(() => {
     const { selectKey } = initConfig;
     switch (selectKey) {
       case 'base':
         return <BaseView />;
+      case 'preference':
+        return <PreferenceView />;
       case 'security':
         return <SecurityView />;
       case 'notification':
@@ -93,6 +98,15 @@ export const UserSettingPage = () => {
         </SettingTitle>
       ),
       key: 'base',
+    },
+    {
+      label: (
+        <SettingTitle>
+          <SettingOutlined />
+          {t(messages.preferenceSetting())}
+        </SettingTitle>
+      ),
+      key: 'preference',
     },
     {
       label: (

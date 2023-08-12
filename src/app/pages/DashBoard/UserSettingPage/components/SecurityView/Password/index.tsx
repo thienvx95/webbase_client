@@ -49,7 +49,7 @@ export const ChangePasswordView: React.FC = () => {
         <span className="strength veryweak">{t(messages.veryWeak())}</span>
       ),
     };
-  }, []);
+  }, [t]);
 
   const handleSubmit = async (data: ChangePasswordParams): Promise<void> => {
     dispatch(userSettingActions.changePassword(data));
@@ -65,7 +65,7 @@ export const ChangePasswordView: React.FC = () => {
     }
   };
   return (
-    <Collapse expandIconPosition="right">
+    <Collapse expandIconPosition="end">
       <Panel
         header={
           <ViewHeader

@@ -7,6 +7,7 @@ export interface AuthParams {
 
 export interface GoogleAuthParams {
   code: string;
+  remmember: boolean;
 }
 
 export interface RefreshTokenParam {

@@ -24,9 +24,27 @@ export const formMessages = {
 };
 
 export const buttonMessages = {
-  submit: () => _t(translations.form.button.submit),
-  cancel: () => _t(translations.form.button.cancel),
-  ok: () => _t(translations.form.button.ok),
-  upload: () => _t(translations.form.button.upload),
-  saveChange: () => _t(translations.form.button.saveChange),
+  submit: () => _t(translations.button.submit),
+  cancel: () => _t(translations.button.cancel),
+  ok: () => _t(translations.button.ok),
+  upload: () => _t(translations.button.upload),
+  saveChange: () => _t(translations.button.saveChange),
+  delete: () => _t(translations.button.delete),
+  deleteAll: () => _t(translations.button.deleteAll),
+  edit: () => _t(translations.button.edit),
+  new: () => _t(translations.button.new),
+  logoutAllLocation: () => _t(translations.button.logoutAllLocation),
+};
+
+export const tableMessages = {
+  userActivities: (property: string) =>
+    _t(translations.table.userActivities[property]),
+  action: () => _t(translations.table.action),
+};
+
+export const modalMessages = {
+  deleteConfirm: (property: string) =>
+    _t(translations.modal.deleteConfirm[property]),
+  deleteAllConfirm: (property: string) =>
+    _t(translations.modal.deleteAllConfirm[property]),
 };
