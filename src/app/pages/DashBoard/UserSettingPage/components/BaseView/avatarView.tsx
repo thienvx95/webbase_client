@@ -61,7 +61,11 @@ export const AvatarView = ({ avatar }: { avatar: string }) => {
       >
         <div className="button_view">
           <Button>
-            {loading ? <LoadingOutlined /> : <UploadOutlined />}
+            {loading ? (
+              <LoadingOutlined rev={undefined} />
+            ) : (
+              <UploadOutlined rev={undefined} />
+            )}
             {t(buttonMessages.upload())}
           </Button>
         </div>

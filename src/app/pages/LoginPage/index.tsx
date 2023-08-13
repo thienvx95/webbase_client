@@ -89,7 +89,7 @@ export const LoginPage: React.FC = () => {
             name="username"
             fieldProps={{
               size: 'large',
-              prefix: <UserOutlined />,
+              prefix: <UserOutlined rev={undefined} />,
             }}
             placeholder={t(messages.usernamePlaceHolder()) ?? ''}
             rules={[
@@ -103,7 +103,7 @@ export const LoginPage: React.FC = () => {
             name="password"
             fieldProps={{
               size: 'large',
-              prefix: <LockOutlined />,
+              prefix: <LockOutlined rev={undefined} />,
             }}
             placeholder={t(messages.passwordPlaceHolder()) ?? ''}
             rules={[

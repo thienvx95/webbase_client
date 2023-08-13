@@ -27,7 +27,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
     return [
       {
         key: 'settings',
-        icon: <SettingOutlined />,
+        icon: <SettingOutlined rev={undefined} />,
         label: t(commonMessages.userSettingMenu()),
       },
       {
@@ -35,7 +35,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = () => {
       },
       {
         key: 'logout',
-        icon: <LogoutOutlined />,
+        icon: <LogoutOutlined rev={undefined} />,
         label: t(commonMessages.logoutMenu()),
       },
     ];

@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { pageSizeOptions } from 'utils/constants';
 import { RowActionProps, rowActions } from './component/RowActions';
 import { toolBarRender, ToolBarProps } from './component/ToolBar';
+
 interface IDataTable<T> {
   actionRef: any;
   onCreateClick?: any;
@@ -107,6 +108,7 @@ export function DataTable<T extends Record<string, any>>({
         }}
         headerTitle={headTitle}
         options={{
+          setting: false,
           density: false,
           reload: () => {
             actionRef.current.reloadAndRest();

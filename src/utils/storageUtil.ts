@@ -3,6 +3,7 @@ export enum CacheKey {
   WebApiToken = 'Web/APIToken',
   WebApiRefreshhToken = 'Web/APIRefreshhToken',
   Theme = 'Theme',
+  ThemeSetting = 'ThemeSetting',
 }
 
 interface ICachePersist {

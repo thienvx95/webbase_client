@@ -93,7 +93,7 @@ export const UserSettingPage = () => {
     {
       label: (
         <SettingTitle>
-          <UserOutlined />
+          <UserOutlined rev={undefined} />
           {t(messages.personalInformation())}
         </SettingTitle>
       ),
@@ -102,7 +102,7 @@ export const UserSettingPage = () => {
     {
       label: (
         <SettingTitle>
-          <SettingOutlined />
+          <SettingOutlined rev={undefined} />
           {t(messages.preferenceSetting())}
         </SettingTitle>
       ),
@@ -111,7 +111,7 @@ export const UserSettingPage = () => {
     {
       label: (
         <SettingTitle>
-          <SafetyCertificateOutlined />
+          <SafetyCertificateOutlined rev={undefined} />
           {t(messages.securitySetting())}
         </SettingTitle>
       ),
@@ -120,7 +120,7 @@ export const UserSettingPage = () => {
     {
       label: (
         <SettingTitle>
-          <BellOutlined />
+          <BellOutlined rev={undefined} />
           {t(messages.notificationSetting())}
         </SettingTitle>
       ),

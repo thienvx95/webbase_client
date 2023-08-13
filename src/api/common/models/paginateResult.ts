@@ -1,14 +1,12 @@
 export interface PaginateResult<T> {
+  totalDocs: number | undefined;
+  limit: number | undefined;
+  totalPages: number | undefined;
+  page: number | undefined;
+  pagingCounter: number | undefined;
+  hasPrevPage: Boolean | undefined;
+  hasNextPage: Boolean | undefined;
+  prevPage: number | undefined;
+  nextPage: number | undefined;
   docs: T[];
-  totalDocs: number;
-  limit: number;
-  hasPrevPage: boolean;
-  hasNextPage: boolean;
-  page?: number | undefined;
-  totalPages: number;
-  offset: number;
-  prevPage?: number | null | undefined;
-  nextPage?: number | null | undefined;
-  pagingCounter: number;
-  meta?: any;
 }

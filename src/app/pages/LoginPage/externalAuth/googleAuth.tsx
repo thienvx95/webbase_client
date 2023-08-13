@@ -24,7 +24,7 @@ const GoogleAuth: React.FC<IGoolgeAuth> = ({ settings }) => {
       <GoogleButton />
     </GoogleOAuthProvider>
   ) : (
-    <LoadingOutlined />
+    <LoadingOutlined rev={undefined} />
   );
 };
 
@@ -65,7 +65,7 @@ const GoogleButton: React.FC = () => {
       <LoginButton
         disabled={!enableAuth}
         onClick={() => login()}
-        icon={<GoogleOutlined />}
+        icon={<GoogleOutlined rev={undefined} />}
         shape="circle"
       />
     </Tooltip>

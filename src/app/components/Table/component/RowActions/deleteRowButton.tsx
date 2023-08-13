@@ -40,7 +40,7 @@ export const DeleteRowButton: React.FC<DeleteRowButtonProps> = ({
       <Button
         shape="circle"
         onClick={DeleteConfirm(id)}
-        icon={<DeleteOutlined />}
+        icon={<DeleteOutlined rev={undefined} />}
       />
     </Tooltip>
   );

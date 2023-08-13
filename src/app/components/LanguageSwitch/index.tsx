@@ -28,13 +28,13 @@ interface LanguageSwitchProps {
   icon?: React.ReactNode;
 }
 
-const defaultLang: Array<LocalData> = [
+export const defaultLang: Array<LocalData> = [
   {
-    lang: 'en',
+    lang: 'en-GB',
     icon: '🇬🇧',
   },
   {
-    lang: 'vi',
+    lang: 'vi-VN',
     icon: 'vn',
   },
 ];
@@ -53,6 +53,7 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
   const { t, i18n } = useTranslation();
   const changeLang = ({ key }: MenuInfo): void => {
     i18n.changeLanguage(key);
+    window.location.reload();
   };
   const allLangUIConfig = postLocalesData ?? defaultLang;
 

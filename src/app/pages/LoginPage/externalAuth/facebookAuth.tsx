@@ -16,7 +16,7 @@ const FacebookAuth: React.FC<IGoolgeAuth> = ({ settings }) => {
   return settings.facebookeClientId !== '' ? (
     <FacebookButton />
   ) : (
-    <LoadingOutlined />
+    <LoadingOutlined rev={undefined} />
   );
 };
 
@@ -26,7 +26,7 @@ const FacebookButton: React.FC = () => {
     <Tooltip title="Facebook">
       <LoginButton
         onClick={() => login()}
-        icon={<FacebookOutlined />}
+        icon={<FacebookOutlined rev={undefined} />}
         shape="circle"
       />
     </Tooltip>

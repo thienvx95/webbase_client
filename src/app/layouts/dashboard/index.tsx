@@ -3,6 +3,7 @@ import {
   PageLoading,
   ProLayout,
   SettingDrawer,
+  intlMap,
 } from '@ant-design/pro-components';
 import Footer from 'app/components/Footer';
 import { layoutActions } from 'providers/layout/slice';
@@ -13,20 +14,14 @@ import {
 import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useOutlet } from 'react-router-dom';
+import { useNavigate, useOutlet } from 'react-router-dom';
 import styled from 'styled-components';
 import RightContent from './RightContent';
 import isEqual from 'lodash/isEqual';
 import { useRequest } from 'utils/hooks/useRequest';
 import { useUserSettingSlice } from 'app/pages/DashBoard/UserSettingPage/slice';
 import { ConfigProvider } from 'antd';
-import enGb from 'antd/lib/locale/en_GB';
-import viVn from 'antd/lib/locale/vi_VN';
 import { useTranslation } from 'react-i18next';
-const intlMap = {
-  en: enGb,
-  vi: viVn,
-};
 
 const ProLayoutContainer = styled.div`
   .ant-pro-layout-container {
@@ -36,7 +31,7 @@ const ProLayoutContainer = styled.div`
 
 export const DashboardLayout = () => {
   const { i18n } = useTranslation();
-
+  const navigate = useNavigate();
   const { actions } = useUserSettingSlice();
   const dispatch = useDispatch();
   const outlet = useOutlet();
@@ -65,7 +60,7 @@ export const DashboardLayout = () => {
   if (loading || menus === undefined) {
     return <PageLoading />;
   }
-
+  console.log('🚀 ~ file: index.tsx:46 ~ DashboardLayout ~ menus:', menus);
   return (
     <ConfigProvider locale={intlMap[i18n.language]}>
       <ProLayoutContainer id="dashboard-container">
@@ -78,6 +73,15 @@ export const DashboardLayout = () => {
           menu={{
             request: async () => menus,
           }}
+          menuItemRender={(item, dom) => (
+            <div
+              onClick={() => {
+                navigate(item.path ?? '', { replace: true });
+              }}
+            >
+              {dom}
+            </div>
+          )}
           {...settings}
         >
           {outlet}

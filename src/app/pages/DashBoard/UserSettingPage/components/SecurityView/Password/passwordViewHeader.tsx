@@ -18,7 +18,7 @@ export const PasswordViewHeader: React.FC = () => {
   return (
     <PasswordViewHeaderContainer>
       <div className="icon">
-        <LockOutlined />
+        <LockOutlined rev={undefined} />
       </div>
       <div>
         <h5>{t(messages.title())}</h5>

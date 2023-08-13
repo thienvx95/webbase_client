@@ -29,9 +29,11 @@
       }
     },
     "userSetting": {
-      "personalInformation": "Personal information",
+      "personalInformation": "Profile",
       "preferenceSetting": {
-        "title": "Preference"
+        "title": "Preferences",
+        "localization": "Localization",
+        "language": "Language"
       },
       "securitySetting": {
         "title": "Security",

@@ -12,7 +12,8 @@ export const initialState: AppLayoutState = {
   theme: StorageUtil.get<ThemeKeyType>(CacheKey.Theme) ?? 'light',
   loading: false,
   settings:
-    StorageUtil.get<ThemeKeyType>(CacheKey.Theme) === 'dark'
+    StorageUtil.get<ProSettings>(CacheKey.ThemeSetting) ??
+    (StorageUtil.get<ThemeKeyType>(CacheKey.Theme) === 'dark'
       ? {
           colorPrimary: '#1677FF',
           contentWidth: 'Fluid',
@@ -30,7 +31,7 @@ export const initialState: AppLayoutState = {
           layout: 'side',
           navTheme: 'light',
           splitMenus: false,
-        },
+        }),
   menus: [],
 };
 
@@ -52,6 +53,12 @@ const slice = createSlice({
       if (action.payload.navTheme === 'light') {
         state.theme = 'light';
       }
+      StorageUtil.set(CacheKey.Theme, state.theme, true);
+      StorageUtil.set(
+        CacheKey.ThemeSetting,
+        JSON.stringify(state.settings),
+        true,
+      );
     },
     fetchMenu(state, action: PayloadAction) {},
     fetchMenuSuccess(

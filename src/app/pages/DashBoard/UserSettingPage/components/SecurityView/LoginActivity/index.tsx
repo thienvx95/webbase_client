@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, Collapse, Divider } from 'antd';
+import { Card, Collapse, CollapseProps, Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { ViewHeader } from '../component/viewHeader';
 import { messages } from './messages';
 import { EnvironmentOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
@@ -14,8 +13,7 @@ import {
 import { isEmpty } from 'lodash';
 import { CurrentLocation } from './currentLocation';
 import { CurrentUserLoginActivities } from './currentUserLoginActivities';
-
-const { Panel } = Collapse;
+import { HeaderPanel } from 'app/components/Collapse/HeaderPanel';
 
 export const LoginActivityView: React.FC = () => {
   const { t } = useTranslation();
@@ -33,25 +31,32 @@ export const LoginActivityView: React.FC = () => {
       }
     }
   };
-  return (
-    <Collapse expandIconPosition="end" onChange={onCollapse}>
-      <Panel
-        header={
-          <ViewHeader
-            icon={<EnvironmentOutlined />}
-            title={t(messages.title())}
-            description={t(messages.description())}
-          />
-        }
-        key="loginActivity"
-      >
+
+  const items: CollapseProps['items'] = [
+    {
+      label: (
+        <HeaderPanel
+          icon={<EnvironmentOutlined rev={null} />}
+          title={t(messages.title())}
+          description={t(messages.description()) ?? ''}
+        />
+      ),
+      key: 'loginActivity',
+      children: (
         <Card bordered={false}>
           <CurrentLocation />
           <Divider style={{ marginBottom: 32 }} />
           <CurrentUserLoginActivities />
         </Card>
-      </Panel>
-    </Collapse>
+      ),
+    },
+  ];
+  return (
+    <Collapse
+      expandIconPosition="end"
+      onChange={onCollapse}
+      items={items}
+    ></Collapse>
   );
 };
 

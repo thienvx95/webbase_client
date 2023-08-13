@@ -5,6 +5,8 @@ export const RoutingPath = {
   Account: '/dashboard/account',
   UserProfile: '/dashboard/account/profile',
   UserSetting: '/dashboard/account/settings',
+  UserManager: '/dashboard/admin/account-management/users',
+  RoleManager: '/dashboard/admin/account-management/roles',
   NotFound: '/dashboard/*',
 };
 

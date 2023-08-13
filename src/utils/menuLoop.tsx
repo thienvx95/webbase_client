@@ -6,7 +6,7 @@ import i18next from 'i18next';
 import React from 'react';
 
 const IconMap = {
-  crown: <CrownOutlined />,
+  crown: <CrownOutlined rev={undefined} />,
 };
 export const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
   menus.map(({ icon, name, children, ...item }) => ({
