@@ -9,6 +9,7 @@ import { useAuthenticateSlice } from './slice';
 
 type AuthContextValue = {
   isAuthenticated: () => boolean;
+
   login: (data: AuthParams) => void;
   logout: () => void;
   removeLoginError: () => void;

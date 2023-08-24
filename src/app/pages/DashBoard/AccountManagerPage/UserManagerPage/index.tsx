@@ -1,4 +1,4 @@
-import { PageContainer } from '@ant-design/pro-components';
+import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { commonMessages } from 'app/messages';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -11,7 +11,13 @@ export function UserManagerPage() {
       <Helmet>
         <title>{t(commonMessages.users())}</title>
       </Helmet>
-      <span>{t(commonMessages.users())}</span>
+      <ProCard
+        style={{
+          height: '60vh',
+        }}
+      >
+        <span>{t(commonMessages.users())}</span>
+      </ProCard>
     </PageContainer>
   );
 }
