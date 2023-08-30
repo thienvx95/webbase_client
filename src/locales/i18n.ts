@@ -2,8 +2,8 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import engb from './en-gb/translation.json';
-import vivn from './vi-vn/translation.json';
+import engb from './language/en-gb.json';
+import vivn from './language/vi-vn.json';
 import { convertLanguageJsonToObject } from './translations';
 
 export const translationsJson = {

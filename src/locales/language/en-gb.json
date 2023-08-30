@@ -1,0 +1,197 @@
+{
+  "app": {
+    "copyright": {
+      "produced": "Produced By BenjaminVu"
+    }
+  },
+  "button": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleteAll": "Delete All",
+    "edit": "Edit",
+    "logoutAllLocation": "Log out All Locations",
+    "new": "New",
+    "ok": "Ok",
+    "saveChange": "Save change",
+    "submit": "Submit",
+    "upload": "Upload"
+  },
+  "form": {
+    "invalid": {
+      "confirmPassword": "The two passwords that you entered do not match!",
+      "email": "Email is not valid!",
+      "newPassword": "New password cannot be the same as current!"
+    },
+    "placeholder": {},
+    "require": {
+      "address": "Address is required!",
+      "confirmPassword": "Retype new password is required!",
+      "country": "Country is required!",
+      "currentPassword": "Current password is required!",
+      "email": "Email is required!",
+      "firstName": "First name is required!",
+      "fullname": "Full Name is required!",
+      "gender": "Gender is required!",
+      "lastName": "Last name is required",
+      "newPassword": "New password is required!",
+      "phonecode": "Area code is required!",
+      "phonenumber": "Phone Number is required!"
+    },
+    "title": {
+      "address": "Address",
+      "address1": "Street Address",
+      "address2": "Street Address Line 2",
+      "avatar": "Avatar",
+      "city": "City",
+      "confirmPassword": "New password, again",
+      "country": "Country",
+      "currentPassword": "Current password",
+      "email": "Email",
+      "firstName": "First name",
+      "fullname": "Full name",
+      "lastName": "Last name",
+      "mobile": "Phone number",
+      "newPassword": "New password",
+      "province": "State / Province",
+      "zipCode": "Postal / Zip Code"
+    }
+  },
+  "languages": {
+    "English": "English",
+    "Vietnamese": "Vietnamese"
+  },
+  "menus": {
+    "accountmanagement": "Account Management",
+    "admin": "Admin",
+    "configuration": "Configuration",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout",
+    "menus": "Menus",
+    "profile": "Profile",
+    "roles": "Roles",
+    "setting": "Setting",
+    "settings": "Settings",
+    "system": "System",
+    "users": "Users"
+  },
+  "modal": {
+    "deleteAllConfirm": {
+      "description": "Are you sure to delete all records?",
+      "title": "Delete All Confirm"
+    },
+    "deleteConfirm": {
+      "description": "Are you sure to delete this record?",
+      "title": "Delete Confirm"
+    }
+  },
+  "notification": {
+    "errors": {
+      "100": "Username or Password is invalid",
+      "150": "Current password not match",
+      "200": "Upload failed!",
+      "210": "Updated failed!",
+      "220": "Created failed!",
+      "230": "Deleted failed!",
+      "1009": "Too many requests. Try again after {0} seconds",
+      "9999": "Unknown error",
+      "ERR_NETWORK": "Network Error",
+      "LimitFileSizeUpload": "{0} must smaller than {1}!",
+      "LimitFileUpload": "You can only upload {0} file!",
+      "login": "Login Error!"
+    },
+    "success": {
+      "changePassword": "Change password successfully!",
+      "create": "Updated successfully!",
+      "delete": "Deleted successfully!",
+      "login": "Login Sucessfully!",
+      "update": "Updated successfully!"
+    },
+    "warning": {}
+  },
+  "pages": {
+    "layouts": {
+      "userLayout": {
+        "title": "Web Application"
+      }
+    },
+    "login": {
+      "error": "Username or Password invalid!",
+      "forgotPassword": "Forgot Password",
+      "login": "Login",
+      "loginWith": "Login with",
+      "password": {
+        "placeholder": "Password",
+        "required": "Password is required!"
+      },
+      "rememberMe": "Remember Me",
+      "success": "Login successful!",
+      "title": "Web Application",
+      "username": {
+        "placeholder": "Username",
+        "required": "Username is required!"
+      }
+    },
+    "userSetting": {
+      "notificationSetting": "Notification",
+      "personalInformation": "Profile",
+      "preferenceSetting": {
+        "language": "Language",
+        "localization": "Localization",
+        "title": "Preferences"
+      },
+      "securitySetting": {
+        "changePassword": {
+          "description": "It's a good idea to use a strong password that you don't use elsewhere",
+          "medium": "Medium",
+          "passwordStrength": "New password strength",
+          "strong": "Strong",
+          "title": "Password",
+          "veryWeak": "Very weak",
+          "weak": "Weak"
+        },
+        "loginActivity": {
+          "city": "City",
+          "continent": "Continent",
+          "country": "Country",
+          "countryCode": "Country code",
+          "currentLocation": "Current location",
+          "description": "Where You're Logged In",
+          "ip": "IP",
+          "isp": "Isp",
+          "org": "Organization",
+          "region": "Region",
+          "title": "Login Activity"
+        },
+        "loginSecurity": "Login Security",
+        "title": "Security"
+      }
+    }
+  },
+  "table": {
+    "action": "Action",
+    "userActivities": {
+      "browser": "Browser",
+      "ipAddress": "IP address",
+      "loginTime": "Login time",
+      "os": "Os",
+      "platform": "Platform"
+    },
+    "userManagement": {
+      "active": "Active",
+      "email": "Email",
+      "fullName": "Full name",
+      "inactive": "Inactive",
+      "mobile": "Mobile",
+      "role": "Roles",
+      "status": "Status",
+      "userName": "User name"
+    }
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System theme"
+  },
+  "title": "welcome"
+}

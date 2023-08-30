@@ -20,6 +20,4 @@ export interface UserDetail {
   mobile?: string;
 
   isActive?: boolean;
-
-  password: string;
 }

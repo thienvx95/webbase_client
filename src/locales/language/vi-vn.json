@@ -1,0 +1,195 @@
+{
+  "app": {
+    "copyright": {
+      "produced": "Bản quyền thuộc về BenjaminVu"
+    }
+  },
+  "button": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleteAll": "Delete All",
+    "edit": "Edit",
+    "logoutAllLocation": "Log out All Locations",
+    "new": "New",
+    "ok": "Ok",
+    "saveChange": "Save change",
+    "submit": "Submit",
+    "upload": "Upload"
+  },
+  "form": {
+    "button": {
+      "cancel": "Hủy bỏ",
+      "ok": "Ok",
+      "submit": "Đồng ý",
+      "upload": "Tải lên"
+    },
+    "invalid": {
+      "email": "Định dạng Email không đúng."
+    },
+    "placeholder": {},
+    "require": {
+      "address": "Vui lòng điền vào mục này.",
+      "country": "Vui lòng điền vào mục này.",
+      "email": "Vui lòng điền vào mục này.",
+      "firstName": "Vui lòng điền vào mục này.",
+      "fullname": "Vui lòng điền vào mục này.",
+      "gender": "Vui lòng điền vào mục này.",
+      "lastName": "Vui lòng điền vào mục này.",
+      "phonecode": "Vui lòng điền vào mục này.",
+      "phonenumber": "Vui lòng điền vào mục này."
+    },
+    "title": {
+      "address": "Địa chỉ",
+      "address1": "Đường",
+      "address2": "Chi tiết",
+      "avatar": "Ảnh đại diện",
+      "city": "Thành phố",
+      "country": "Quốc gia",
+      "email": "Email",
+      "firstName": "Tên",
+      "fullname": "Họ tên",
+      "lastName": "Họ",
+      "mobile": "Điện thoại",
+      "province": "Tỉnh/Huyện/Quận",
+      "zipCode": "Postal / Zip Code"
+    }
+  },
+  "languages": {
+    "English": "Tiếng Anh",
+    "Vietnamese": "Tiếng Việt"
+  },
+  "menus": {
+    "accountmanagement": "Quản lý tài khoản",
+    "admin": "Admin",
+    "configuration": "Cấu hình",
+    "dashboard": "Dashboard",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "menus": "Menus",
+    "profile": "Thông tin cá nhân",
+    "roles": "Vai Trò",
+    "setting": "Thiết lập",
+    "settings": "Thiết lập",
+    "system": "Hệ thống",
+    "users": "Tài khoản"
+  },
+  "modal": {
+    "deleteAllConfirm": {
+      "description": "Are you sure to delete all records?",
+      "title": "Delete All Confirm"
+    },
+    "deleteConfirm": {
+      "description": "Are you sure to delete this record?",
+      "title": "Delete Confirm"
+    }
+  },
+  "notification": {
+    "errors": {
+      "100": "Đăng nhập KHÔNG thành công. Bạn vui lòng thử lại hoặc đăng nhập bằng cách khác nhé!",
+      "210": "Cập nhập thất bại!",
+      "220": "Thêm mới thất bại!",
+      "230": "Xóa thất bại!",
+      "1009": "Too many requests",
+      "9999": "Unknown error",
+      "ERR_NETWORK": "Network Error"
+    },
+    "success": {
+      "create": "Thêm mới thành công!",
+      "delete": "Xóa thành công!",
+      "update": "Cập nhập thành công!"
+    },
+    "warning": {}
+  },
+  "pages": {
+    "layouts": {
+      "userLayout": {
+        "title": "Web Application"
+      }
+    },
+    "login": {
+      "error": "Đăng nhập KHÔNG thành công. Bạn vui lòng thử lại hoặc đăng nhập bằng cách khác nhé!",
+      "forgotPassword": "Quên mật khẩuForgot Password",
+      "login": "Đăng nhập",
+      "loginWith": "Đăng nhấp với",
+      "password": {
+        "placeholder": "Mật khẩu",
+        "required": "Vui lòng điền vào mục này."
+      },
+      "rememberMe": "Ghi nhớ",
+      "success": "Đăng nhập thành công!",
+      "title": "Web Application",
+      "username": {
+        "placeholder": "Tài khoản",
+        "required": "Vui lòng điền vào mục này."
+      }
+    },
+    "userSetting": {
+      "notificationSetting": "Notification",
+      "personalInformation": "Hồ sơ",
+      "preferenceSetting": {
+        "language": "Ngôn ngữ",
+        "localization": "Nội địa hóa",
+        "title": "Tùy chọn"
+      },
+      "securitySetting": {
+        "changePassword": {
+          "description": "It's a good idea to use a strong password that you don't use elsewhere",
+          "medium": "Medium",
+          "passwordStrength": "New password strength",
+          "strong": "Strong",
+          "title": "Password",
+          "veryWeak": "Very weak",
+          "weak": "Weak"
+        },
+        "loginActivity": {
+          "city": "City",
+          "continent": "Continent",
+          "country": "Country",
+          "countryCode": "Country code",
+          "currentLocation": "Current location",
+          "description": "Where You're Logged In",
+          "ip": "IP",
+          "isp": "Isp",
+          "org": "Organization",
+          "region": "Region",
+          "title": "Login Activity"
+        },
+        "loginSecurity": "Login Security",
+        "title": "Bảo vệ"
+      }
+    }
+  },
+  "table": {
+    "action": "Hành động",
+    "userActivities": {
+      "browser": "Browser",
+      "ipAddress": "IP address",
+      "loginTime": "Login time",
+      "os": "Os",
+      "platform": "Platform"
+    },
+    "userManagement": {
+      "active": "Hoạt động",
+      "email": "Email",
+      "fullName": "Họ tên",
+      "inactive": "Không hoạt động",
+      "mobile": "Điện thoại",
+      "role": "Vai trò",
+      "status": "Trạng thái",
+      "userName": "Tài khoản"
+    }
+  },
+  "theme": {
+    "dark": "Tối",
+    "light": "Sáng",
+    "system": "Hệ thống"
+  },
+  "title": "Xin chào",
+  "userManagement": {
+    "browser": "Browser",
+    "ipAddress": "IP address",
+    "loginTime": "Login time",
+    "os": "Os",
+    "platform": "Platform"
+  }
+}

@@ -39,6 +39,8 @@ export const buttonMessages = {
 export const tableMessages = {
   userActivities: (property: string) =>
     _t(translations.table.userActivities[property]),
+  userManagement: (property: string) =>
+    _t(translations.table.userManagement[property]),
   action: () => _t(translations.table.action),
 };
 
