@@ -1,5 +1,5 @@
-export interface ChangePasswordParams {
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
+export class ChangePasswordParams {
+  currentPassword?: string;
+  newPassword?: string;
+  confirmPassword?: string;
 }

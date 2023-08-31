@@ -1,4 +1,4 @@
-export interface CountryItem {
-  name: string;
-  code: string;
+export class CountryItem {
+  name?: string;
+  code?: string;
 }

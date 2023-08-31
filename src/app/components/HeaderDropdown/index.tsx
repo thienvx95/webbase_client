@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Dropdown, DropDownProps } from 'antd';
 import { MenuProps } from 'rc-menu';
-import { HeaderDropDownIcon } from './headerDropDownIcon';
+import { HeaderDropDownIcon } from './HeaderDropDownIcon';
 
 export interface HeaderTopDropdownProps extends DropDownProps {
   overlayClassName?: string;

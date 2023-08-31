@@ -1,3 +1,3 @@
-export interface BaseSettingPage {
-  type: string;
+export class BaseSettingPage {
+  type?: string;
 }

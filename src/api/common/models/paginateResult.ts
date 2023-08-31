@@ -1,4 +1,4 @@
-export interface PaginateResult<T> {
+export class PaginateResult<T> {
   totalDocs: number | undefined;
   limit: number | undefined;
   totalPages: number | undefined;
@@ -8,5 +8,5 @@ export interface PaginateResult<T> {
   hasNextPage: Boolean | undefined;
   prevPage: number | undefined;
   nextPage: number | undefined;
-  docs: T[];
+  docs?: T[];
 }

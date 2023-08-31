@@ -1,7 +1,7 @@
 import { SortOrder } from 'antd/es/table/interface';
 import { ReactText } from 'react';
 
-export interface PaginateParams {
+export class PaginateParams {
   limit?: number;
   page?: number;
   filter?: Record<string, ReactText[] | null>;

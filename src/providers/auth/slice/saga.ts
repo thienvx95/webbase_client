@@ -10,7 +10,7 @@ export function* loginSaga(data: PayloadAction<AuthParams>) {
   yield delay(500);
   try {
     const result = yield call(AuthAPI.login, data.payload);
-    if (result.success) {
+    if (result && result.success) {
       yield put(actions.authSuccess(result));
       globalNavigate(RoutingPath.Dashboard);
     } else {
