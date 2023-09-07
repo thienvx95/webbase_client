@@ -1,4 +1,9 @@
-import { ActionType, PageContainer, ProCard, ProColumns } from '@ant-design/pro-components';
+import {
+  ActionType,
+  PageContainer,
+  ProCard,
+  ProColumns,
+} from '@ant-design/pro-components';
 import { RoleDetail } from 'api/role/models';
 import { RoleApi } from 'api/role/roleApi';
 import { DataTable } from 'app/components/Table';
@@ -16,8 +21,8 @@ export function RoleManagerPage() {
     () => [
       {
         title: t(tableMessages.userManagement('name')),
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: '_id',
+        key: '_id',
       },
       {
         title: t(tableMessages.userManagement('description')),

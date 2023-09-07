@@ -170,6 +170,10 @@
   },
   "table": {
     "action": "Action",
+    "roleManagement": {
+      "description": "Description",
+      "name": "Role"
+    },
     "userActivities": {
       "browser": "Browser",
       "ipAddress": "IP address",

@@ -161,6 +161,10 @@
   },
   "table": {
     "action": "Hành động",
+    "roleManagement": {
+      "description": "Mô tả",
+      "name": "Vai trò"
+    },
     "userActivities": {
       "browser": "Browser",
       "ipAddress": "IP address",

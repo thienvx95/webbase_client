@@ -79,6 +79,7 @@ export const LoginPage: React.FC = () => {
               removeLoginError();
             }
           }}
+          autoFocusFirstInput={false}
         >
           {error != null && (
             <LoginMessage
